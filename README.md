@@ -46,3 +46,10 @@ It is your goal to __avoid colliding with any__ of the matrices.
 For __every collision__, you will __lose one life.__
 
 __BUT!__ when you do collide, your __goose__ will undergo that _exact_ transformation. Not only visually, but also the goose's direction vector is adjust according to the matrix as well; __north__ may become __southwest__, etc.
+
+
+### <span style="color: #00BE67;">Requirements</span>
+
+Just an internet browser and a __Python__ version 3.0+ for __Python's__ `http.server` module.
+
+Locally, I'm running __Firefox__ and __Python v3.10__ for the `http.server`.
