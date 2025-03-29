@@ -1,0 +1,93 @@
+
+
+
+.brutal-button {
+    /* POSITIONING — applied by parent if needed */
+
+    display: flex;
+
+    /* SIZE */
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+
+    /* COLORS */
+    background-color: black;
+    border: 1px solid white;
+    box-shadow: 2px 2px 0 #808080;
+
+    /* FONT */
+    color: white;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+
+    /* INTERACTION */
+    cursor: pointer;
+    z-index: 1;
+
+    position: relative;
+}
+
+/* HOVER STATE */
+.brutal-button:hover:not(:active) {
+    color: limegreen;
+    border: 1px solid limegreen;
+    transition: opacity 0.2s ease, transform 0.4s linear;
+    animation: echo-glitch 0.3s infinite alternate;
+}
+
+/* RGB HALOS */
+.brutal-button::before,
+.brutal-button::after {
+    content: attr(data-label);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* RED ECHO */
+.brutal-button::before {
+    /* top: -10px; */
+    left: -16px;
+    color: red;
+    border: 1px solid red;
+}
+
+/* BLUE ECHO */
+.brutal-button::after {
+    /* top: 10px; */
+    left: 16px;
+    color: blue;
+    border: 1px solid blue;
+}
+
+/* HOVER + NOT ACTIVE: shows echoes */
+.brutal-button:hover:not(:active)::before,
+.brutal-button:hover:not(:active)::after {
+    opacity: 1;
+    animation: echo-glitch 0.3s infinite alternate;
+}
+
+
+/* ACTIVE OVERRIDES */
+.brutal-button:active{
+    background-color: white;
+    color: black;
+    border: 1px inset white;
+    box-shadow: 2px 2px 0 #808080;
+    z-index: 0;
+}
+
+/* GLITCH */
+@keyframes echo-glitch {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-2px, 2px); }
+    50%  { transform: translate(2px, -2px); }
+    75%  { transform: translate(-2px, -2px); }
+    100% { transform: translate(2px, 2px); }
+}
