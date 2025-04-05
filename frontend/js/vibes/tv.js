@@ -8,7 +8,6 @@ let tvLoopPlayer = null;
 
 
 
-
 function onYouTubeIframeAPIReady() 
 {
     console.log("YouTube IFrame API is ready.");
