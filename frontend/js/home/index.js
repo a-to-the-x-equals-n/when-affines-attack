@@ -1,3 +1,5 @@
+import { setTheme } from '../util/themes.js';
+import { createAppWindow } from '../util/window-manager.js';
 
 document.addEventListener('DOMContentLoaded', function () 
 {
@@ -55,7 +57,16 @@ document.addEventListener('DOMContentLoaded', function ()
 
     gameButton.addEventListener('click', function () 
     {
-        window.location.href = 'pages/goose.html';
+        createAppWindow('goose-game', 'Goose.exe', `
+            <iframe 
+                src="pages/goose.html" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border: none;">
+            </iframe>
+        `);
+        // window.location.href = 'pages/goose.html';
     });
 });
 
@@ -71,27 +82,31 @@ document.addEventListener('DOMContentLoaded', function ()
 });
 
 
-// BACKGROUND IMAGE 
 document.addEventListener('DOMContentLoaded', function () 
 {
-    const overlay = document.getElementById('click-overlay');
+    let flickerTimeout = null;
 
-    document.addEventListener('mousedown', function (e) 
+    document.addEventListener('pointerdown', function (e) 
     {
-        if (e.target.closest('.brutal-button') || (e.target.closest('.start-button'))) 
+        // if (e.target.closest('.brutal-button') || e.target.closest('.start-button')) 
+        if (e.target.closest('button, .brutal-button, .start-button, [role="button"]'))
         {
-            overlay.style.display = 'block';
+            // Clear previous flicker if user spam-clicks
+            clearTimeout(flickerTimeout);
+
+            // Trigger quick flicker: switch to 'cosmic' for ~100ms
+            setTheme('cosmic');
+
+            flickerTimeout = setTimeout(() => 
+            {
+                setTheme('win95');
+            }, 100);  // This delay = flicker duration
         }
     });
 
-    document.addEventListener('mouseup', function () 
-    {
-        overlay.style.display = 'none';
-    });
-
-    // Optional: Hide image if user leaves the window while holding
+    // Edge case cleanup
     window.addEventListener('blur', function () 
     {
-        overlay.style.display = 'none';
+        clearTimeout(flickerTimeout);
     });
 });

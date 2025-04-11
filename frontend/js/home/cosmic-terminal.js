@@ -1,10 +1,14 @@
 // === DOM ELEMENTS ===
 const cosmicTerminal = document.getElementById('cosmic-container');
 const cosmicTerminalText = document.getElementById('cosmic-terminal-text');
+const landing = document.getElementById('landing');
+const blackout = document.getElementById('transition-blackout');
 
 // === CONTROL STATE ===
 let currentLineIndex = 0;
 let terminalInterval = null;
+const LINE_DELAY = 350; // <-------- ADJUST AS NEEDED TO DELAY OUTPUTS
+
 
 // === TERMINAL LINES ===
 const terminalLines = [
@@ -16,7 +20,7 @@ const terminalLines = [
     'user@[BOOT]:$ [OK] online',
     'user@[BOOT]:$ -- detecting interference --',
     'user@[████]:$ █.^/完/',
-    '██@[WARN]█功 /firewa█l_br█ech>██',
+    '██@[WARN]█功 /firewall_breach',
     
     // Phase 2 starts here
     'ドモ@[SYSFAIL]$: █ corrupt echoes in memory █',
@@ -61,12 +65,25 @@ function runTerminal()
 {
     const line = terminalLines[currentLineIndex++];
 
+    if (line === '██@[WARN]█功 /firewall_breach') 
+    {
+        clearInterval(terminalInterval);
+        printLine(line);
+    
+        // pause for 1500ms for drama
+        setTimeout(() => 
+        {
+            terminalInterval = setInterval(runTerminal, LINE_DELAY);
+        }, 2000);
+        return;
+    }
+
     if (line === '__SPINNER__')
     {
         clearInterval(terminalInterval);
         feedGooseSpinner(() =>
         {
-            terminalInterval = setInterval(runTerminal, 1700);
+            terminalInterval = setInterval(runTerminal, LINE_DELAY); 
         });
         return;
     }
@@ -75,8 +92,8 @@ function runTerminal()
     {
         cosmicTerminal.style.backgroundColor = ' #201c1c';
         cosmicTerminal.style.color = ' #ffa500';
-        const terminalOutline = document.getElementById('cosmic-terminal')
-        terminalOutline.style.border = '2px outset #ffa500'
+        const terminalOutline = document.getElementById('cosmic-terminal');
+        terminalOutline.style.border = '2px outset #ffa500';
         cosmicTerminal.classList.add('crt-flicker');
     
         // Remove the flicker class after the animation completes
@@ -92,29 +109,33 @@ function runTerminal()
     {
         clearInterval(terminalInterval);
 
+        // apply flicker effect to the entire terminal
+        cosmicTerminal.classList.add('crt-flicker');
         setTimeout(() =>
         {
-            // fade out cosmic terminal
-            cosmicTerminal.style.opacity = '0';
-        
-            // after fade completes, hide cosmic terminal, show landing
+            // slam black screen instantly
+            blackout.style.opacity = '1';
+            cosmicTerminal.style.display = 'none';
+            cosmicTerminal.classList.remove('crt-flicker');
+
+            // fade in landing page underneath
             setTimeout(() =>
             {
-                cosmicTerminal.style.display = 'none';
-        
-                const landing = document.getElementById('landing');
                 landing.style.display = 'block';
-                landing.style.opacity = '0';
-                landing.style.transition = 'opacity 1s ease';
-        
+
                 requestAnimationFrame(() =>
                 {
-                    landing.style.transition = 'opacity 1s ease';
-                    landing.style.opacity = '1';
+                    landing.style.opacity = '0';
+                    landing.style.transition = 'opacity 1.2s ease';
+
+                    requestAnimationFrame(() =>
+                    {
+                        landing.style.opacity = '1';
+                        blackout.style.opacity = '0';
+                    });
                 });
-        
-            }, 3000); // allow fade out to complete
-        }, 1500); // short delay after last line before fading
+            }, 2500); // wait a bit on black before fading in
+        }, 300); // length of flicker
     }
 }
 
@@ -166,7 +187,7 @@ function feedGooseSpinner(done)
             spinnerDiv.innerHTML = '&nbsp;&nbsp;&nbsp; - fed -';
             if (done) done();
         }
-    }, 300);
+    }, 200);
 }
 
 // === EXPORTS ===
@@ -176,5 +197,5 @@ export function transitionToCosmicTerminal()
     cosmicTerminalText.innerHTML = '';
     currentLineIndex = 0;
 
-    terminalInterval = setInterval(runTerminal, 1200);
+    terminalInterval = setInterval(runTerminal, LINE_DELAY);
 }

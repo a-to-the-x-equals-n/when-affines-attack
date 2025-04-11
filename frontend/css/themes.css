@@ -1,0 +1,56 @@
+
+:root {
+    /* === BSOD === */
+    --bsod-blue: #0000AA
+    --bsod-white: white;
+    --bsod-grey: #C0C0C0
+
+    /* === FONTS === */
+    --main-font: "VT323", monospace;
+    --eldritch-font: 'IBM Plex Mono', monospace !important;
+
+    /* === COSMIC TERMINAL === */
+    --eldritch-orange: #ffa500;
+    --eldritch-black: #201c1c;
+
+    /* === PIXEL GLITCH COLORS === */
+    --pixel-blue: blue;
+    --pixel-red: red;
+    --pixel-green: limegreen;
+}
+
+/* === WINDOWS 95 THEME === */
+.theme-win95 {
+    --win95-bg: #c0c0c0;
+    --win95-fg: #000000;
+    --win95-accent: #000080;
+    --win95-light: #ffffff;
+    --win95-dark: #808080;
+    --win95-darker: #404040;
+    --win95-highlight: #dfdfdf;
+
+    --main-font: "VT323", monospace;
+    --theme-bg-image: url('../../assets/windows_bg.png');
+
+    --theme-bg-color: #000000;
+    --startbar-bg: black;
+    --startbar-shadow: #808080;
+  }
+
+/* === COSMIC HORROR THEME === */
+.theme-cosmic {
+    --win95-bg: #201c1c;
+    --win95-fg: #ffa500;
+    --win95-accent: #003d3d;
+    --win95-light: #ffa500;
+    --win95-dark: #201c1c;
+    --win95-darker: #201c1c;
+    --win95-highlight: #003d3d;
+  
+    --main-font: "VT323", monospace;
+    --theme-bg-image: url('../../assets/farrealm2.png');
+
+    --theme-bg-color: #201c1c;
+    --startbar-bg: #1a0e1a;
+    --startbar-shadow: #003d3d;
+  }

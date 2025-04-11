@@ -1,7 +1,6 @@
 
 .brutal-button {
     /* POSITIONING — applied by parent if needed */
-
     display: flex;
 
     /* SIZE */
@@ -10,13 +9,13 @@
     height: 100%;
 
     /* COLORS */
-    background-color: black;
-    border: 1px solid white;
-    box-shadow: 2px 2px 0 #808080;
+    background-color: var(--win95-bg);
+    border: 1px solid var(--win95-light);
+    box-shadow: 2px 2px 0 var(--win95-dark);
 
     /* FONT */
-    color: white;
-    font-family: "VT323", monospace;
+    color: var(--win95-fg);
+    font-family: var(--main-font);
     font-size: 20px;
 
     /* INTERACTION */

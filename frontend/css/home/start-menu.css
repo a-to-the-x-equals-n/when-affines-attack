@@ -1,3 +1,5 @@
+@import './btn-base.css';
+
 .start-menu {
     position: fixed;
     bottom: 51px;
@@ -5,15 +7,12 @@
 
     width: 150px;
 
-    background-color: black;
-    border: 2px outset white;
-    box-shadow: 2px 2px 0 #808080;
+    background-color: var(--win95-bg);
+    border: 2px outset var(--win95-light);
+    box-shadow: 2px 2px 0 var(--win95-dark);
 
-    color: white;
-    font-family: "VT323", monospace;
-
-    /* justify-content: center;
-    align-items: center; */
+    color: var(--win95-fg);
+    font-family: var(--main-font);
 
     z-index: 9000;
 
@@ -28,7 +27,7 @@
     pointer-events: auto;
 }
 
-/* hide completely after fade-out ends */
+/* Hide completely after fade-out ends */
 .start-menu.hidden {
     display: none;
 }
@@ -39,9 +38,9 @@
 }
 
 .start-menu-list {
-    padding: 0;       
-    margin: 0;  
-    text-align: center;         
+    padding: 0;
+    margin: 0;
+    text-align: center;
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -50,15 +49,12 @@
 
 .start-menu-item {
     padding: 0.25rem 2px;
-    /* padding-left: 1rem; */
-    /* background-color: black; */
-    /* border: 1px solid white; */
-    border-bottom: 1px solid white;
-    box-shadow: 2px 2px 0 #808080;
+    border-bottom: 1px solid var(--win95-light);
+    box-shadow: 2px 2px 0 var(--win95-dark);
     cursor: pointer;
     user-select: none;
     font-size: 20px;
-    font-family: "VT323", monospace;
+    font-family: var(--main-font);
 }
 
 .start-menu .brutal-button {

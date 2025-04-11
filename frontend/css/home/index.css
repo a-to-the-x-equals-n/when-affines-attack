@@ -1,18 +1,33 @@
 @import '../fonts.css';
 @import './bsod.css';
 @import './cosmic-terminal.css';
+@import './start-menu.css';
+@import './../windows/win95.css';
 
 
+/* === ROOT LAYOUT === */
+body {
+    background-color: var(--theme-bg-color);
+    padding-bottom: 1.2% !important;
+    height: 100vh;
+}
+
+/* === MAIN LANDING SECTION === */
 #landing {
     display: none;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: 100%;
+
+    background-image: var(--theme-bg-image) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
-body {
-    background-color: black !important;
-    padding-bottom: 1.2% !important;
-}
-
-
+/* === START BAR === */
 .start-bar {
     border-radius: 4px;
     position: fixed;
@@ -21,16 +36,16 @@ body {
     width: 100%;
     height: 50px;
 
-    border: 1px solid white;
-    background-color: black;
-    box-shadow: 2px 2px 0 #808080;
-    color: white;
-    z-index: 1030;
+    border: 2px outset var(--win95-light);      /* light border */
+    background-color: var(--win95-bg);          /* themed background */
+    box-shadow: 2px 2px 0 var(--win95-dark);    /* 3D shadow */
+    color: var(--win95-fg);                     /* themed text color */
 
+    font-family: var(--main-font);
+    z-index: 1030;
     padding: 0.5rem;
 }
 
-/* RELATIVE ANCHOR FOR START BAR */
 .start-bar-content {
     position: relative;
     width: 100%;
@@ -38,33 +53,28 @@ body {
     overflow: visible;
 }
 
+/* === START BUTTON === */
 .start-button {
-    /* POSITION */
     display: flex;
-    align-items: center;     /* vertical center */
-    justify-content: center; /* horizontal center */
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    left: 12px;             /* adjust horizontally */
+    left: 12px;
 
-    /* SIZE */
     height: 2rem;
     width: 4.25rem;
     border-radius: 4px;
 
-    /* COLORS */
-    background-color: black;
-    border: 1px offset white;
-    box-shadow: 2px 2px 0 #808080;
+    /* border: 1px offset white; */
+    background-color: var(--win95-bg);
+    box-shadow: 2px 2px 0 var(--win95-dark);
+    color: var(--win95-fg);
 
-    /* FONT */
-    color: white;
     font-family: "VT323", monospace;
     font-size: 20px;
 
-    /* MISC */
     cursor: pointer;
 }
-
 
 .start-button:hover {
     /* background-color: black;
@@ -143,4 +153,17 @@ body {
     50%  { transform: translate(2px, -2px); }
     75%  { transform: translate(-2px, -2px); }
     100% { transform: translate(2px, 2px); }
+}
+
+#transition-blackout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99999; /* above everything */
+    transition: opacity .4s linear;
 }

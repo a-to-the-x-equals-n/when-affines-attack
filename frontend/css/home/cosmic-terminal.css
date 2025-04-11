@@ -14,7 +14,7 @@
 }
 
 #cosmic-terminal {
-    border-radius: 7px;
+    border-radius: 6px;
     display: flex;
     flex-direction: column;       /* Stack child vertically */
     width: 90%;
