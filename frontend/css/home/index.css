@@ -1,9 +1,9 @@
-
 @import '../fonts.css';
 @import './bsod.css';
+@import './cosmic-terminal.css';
 
 
-#site {
+#landing {
     display: none;
 }
 

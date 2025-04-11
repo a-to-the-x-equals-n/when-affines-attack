@@ -7,7 +7,6 @@
     <link rel = "stylesheet" href = "css/home/start-menu.css">
     <link rel = "stylesheet" href = "css/home/btn-base.css">
     <!-- <link rel = "stylesheet" href = "home/css/bsod.css"> -->
-
     <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel = "stylesheet">
     <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Home</title>
@@ -15,6 +14,7 @@
 
 <body>
 
+    <!-- BSOD -->
     <div id="bsod-overlay">
         <div id="bsod-heading">Windows</div>
         <pre id="bsod-text">
@@ -27,14 +27,18 @@
             
             Error: 0E : 016F : BFF9B3D4
         </pre>
-        <span id = 'pressPrompt'>Press any key to continue </span>
+        <span id = 'bsodPrompt'>Press any key to continue </span>
     </div>
-    <div id="cosmic-terminal" style="display: none;">
-        <pre id="cosmic-output"></pre>
+
+    <!-- COSMIC TERMINAL -->
+    <div id = 'cosmic-container' style = 'display: none;'>
+        <div id="cosmic-terminal">
+            <p id="cosmic-terminal-text"></p>
+        </div>
     </div>
     
-
-    <div id = 'site'>
+    <!-- LANDING PAGE -->
+    <div id = 'landing'>
         <nav class = "start-bar">
             <div class = 'start-bar-content'>
                 <button class = "start-button" id = "start-button">
@@ -42,8 +46,6 @@
                 </button>
             </div>
         </nav>
-
-
         <div id = "start-menu" class = "start-menu hidden">
             <ul class = "start-menu-list">
                 <li class = 'start-menu-item brutal-button' data-label = 'game'>game</li>
@@ -52,16 +54,12 @@
                 <li class = 'start-menu-item brutal-button' data-label = 'themes'>themes</li>
             </ul>
         </div>
-
-
         <script type = "module" src = "js/home/index.js"></script>
-
         <img id = "click-overlay" 
             src = "assets/zebrayw.png" 
             style = "display: none; position: fixed; top: 0; left: 0;width: 100vw; height: 100vh; z-index: -1;" />
     </div>
 
     <script type="module" src="js/home/bsod.js"></script>
-
 </body>
 </html>

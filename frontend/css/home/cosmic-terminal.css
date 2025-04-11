@@ -1,0 +1,88 @@
+#cosmic-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: #3b2b2b; */
+    background-color: #0000AA;
+    color: white;
+    /* background-color: #201c1c;
+    color: #ffa500; */
+    opacity: 1;                        
+    transition: opacity 1s ease;   
+}
+
+#cosmic-terminal {
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;       /* Stack child vertically */
+    width: 90%;
+    height: 87%;
+    margin: 2%;
+    padding: 1%;
+
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-size: 20px;
+    letter-spacing: 1px;
+    
+    z-index: 9999;
+    display: flex;
+    border: 2px outset white;
+}
+
+#cosmic-terminal-text {
+    flex: 1;    
+    text-align: left;
+    line-height: 1.6;
+    padding: 2%px;
+    font-family: 'IBM Plex Mono', monospace;
+    overflow-y: auto;       /* <— enables vertical scroll */
+    height: 100%;           
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* IE/Edge */
+}
+
+#cosmic-terminal-text::-webkit-scrollbar {
+    display: none;                  /* Chrome, Safari, Edge (new) */
+}
+
+.terminal-cursor {
+    display: inline-block;
+    margin-left: 4px;
+    animation: blink-cursor .6s steps(2, start) infinite;
+    font-weight: bold;
+}
+
+@keyframes blink-cursor {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+.glitch {
+    position: relative;
+    animation: glitch-flicker 0.3s infinite;
+}
+
+@keyframes glitch-flicker {
+    0%   { opacity: 1; transform: translate(0, 0); }
+    25%  { opacity: 0.8; transform: translate(-1px, 1px); }
+    50%  { opacity: 1; transform: translate(1px, -1px); }
+    75%  { opacity: 0.9; transform: translate(-1px, -1px); }
+    100% { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes crt-flicker {
+    0%   { opacity: 0.8; transform: scale(1.01) skewX(0.2deg); }
+    5%   { opacity: 0.95; transform: scale(1) skewX(-0.2deg); }
+    10%  { opacity: 1; transform: scale(1.005) skewX(0.3deg); }
+    15%  { opacity: 0.9; transform: scale(1.01) skewX(-0.1deg); }
+    20%  { opacity: 1; transform: scale(1) skewX(0deg); }
+    100% { opacity: 1; transform: none; }
+}
+
+.crt-flicker {
+    animation: crt-flicker 0.4s linear;
+}
