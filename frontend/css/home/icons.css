@@ -1,0 +1,93 @@
+/* ========================
+   Base Styles for Desktop Icons
+   - Shared by ALL app/game shortcuts on desktop
+   - Inherit brutal-button effects (glitch, border, font, etc.)
+========================= */
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* center horizontally */
+    justify-content: center; /* center vertically */
+
+    /* spacing inside the button */
+    padding: 6px;
+    gap: 6px;
+
+    /* icon size */
+    width: 80px;
+    height: 80px;
+
+    /* interaction */
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    
+    /* no outline when clicked */
+    outline: none;
+
+    /* smooth hover effect */
+    transition: filter 0.2s ease, transform 0.2s ease;
+
+    box-shadow: none !important;
+}
+
+/* ========================
+   Icon Image Inside Button
+   - Size and color glow (theme-aware via var)
+========================= */
+.desktop-icon img {
+    width: 48px;
+    height: 48px;
+    
+    /* adds a colored glow behind the icon */
+    /* filter: drop-shadow(1px 1px 0 var(--win95-accent)); */
+
+    transition: filter 0.2s ease;
+}
+
+/* ========================
+   Icon Text Label
+   - Appears under the icon
+========================= */
+.icon-label {
+    font-size: 20px;
+    color: var(--win95-accent);     /* uses theme variable */
+    font-family: var(--main-font);
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px var(--startbar-shadow);
+    text-align: center;
+}
+
+
+/* ========================
+   Individual Desktop Icon Positions
+   - Adjust each icon's coordinates here
+========================= */
+
+/* Goose Game */
+#goose-icon {
+    position: absolute;
+    top: 60px;
+    left: 60px;
+}
+
+/* Vibes / TV Radio */
+#vibes-icon {
+    position: absolute;
+    top: 60px;
+    left: 160px;
+}
+
+/* Carousel / Photos */
+#carousel-icon {
+    position: absolute;
+    top: 60px;
+    left: 260px;
+}
+
+/* Theme Switcher */
+#themes-icon {
+    position: absolute;
+    top: 60px;
+    left: 360px;
+}

@@ -73,10 +73,10 @@
 
 /* ACTIVE OVERRIDES */
 .brutal-button:active{
-    background-color: white;
-    color: black;
-    border: 1px inset white;
-    box-shadow: 2px 2px 0 #808080;
+    background-color: --win95-fg;
+    color: --win95-bg;
+    border: 1px inset --win95-bg;
+    box-shadow: 2px 2px 0 --win95-highlight;
     z-index: 0;
 }
 

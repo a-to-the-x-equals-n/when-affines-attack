@@ -41,16 +41,16 @@
 .theme-cosmic {
     --win95-bg: #201c1c;
     --win95-fg: #ffa500;
-    --win95-accent: #003d3d;
+    --win95-accent: #13ad7a;
     --win95-light: #ffa500;
     --win95-dark: #201c1c;
     --win95-darker: #201c1c;
-    --win95-highlight: #003d3d;
+    --win95-highlight: #13ad7a;
   
     --main-font: "VT323", monospace;
-    --theme-bg-image: url('../../assets/farrealm2.png');
+    --theme-bg-image: url('../../assets/vgod.png');
 
     --theme-bg-color: #201c1c;
     --startbar-bg: #1a0e1a;
-    --startbar-shadow: #003d3d;
+    --startbar-shadow: #13ad7a;
   }

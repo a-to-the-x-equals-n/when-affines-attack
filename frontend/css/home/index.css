@@ -14,6 +14,7 @@ body {
 
 /* === MAIN LANDING SECTION === */
 #landing {
+    position: relative;
     display: none;
 
     margin: 0;
@@ -62,7 +63,7 @@ body {
     left: 12px;
 
     height: 2rem;
-    width: 4.25rem;
+    /* width: 4.25rem; */
     border-radius: 4px;
 
     /* border: 1px offset white; */
@@ -139,9 +140,9 @@ body {
 }
 
 .start-button:active {
-    background-color: white;
-    color: black;
-    border: 1px solid white;
+    background-color: #201c1c;
+    color: #ffa500;
+    border: 1px solid #201c1c;
     z-index: 0;
     border-radius: 4px;
 }
@@ -167,3 +168,4 @@ body {
     z-index: 99999; /* above everything */
     transition: opacity .4s linear;
 }
+
