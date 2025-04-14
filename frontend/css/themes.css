@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); /* font-family: "VT323", monospace; */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap'); /* font-family: 'IBM Plex Mono', monospace; */
+
 
 :root {
     /* === BSOD === */
     --bsod-blue: #0000AA
     --bsod-white: white;
     --bsod-grey: #C0C0C0
+    --bsod-font-size: 41px;
+    --bsod-letter-spacing: 0.5px;
 
     /* === FONTS === */
     --main-font: "VT323", monospace;

@@ -27,8 +27,8 @@
 
 /* HOVER STATE */
 .brutal-button:hover:not(:active) {
-    color: limegreen;
-    border: 1px solid limegreen;
+    color: var(--pixel-green);
+    border: 1px solid var(--pixel-green);
     transition: opacity 0.2s ease, transform 0.4s linear;
     animation: echo-glitch 0.3s infinite alternate;
 }
@@ -51,16 +51,16 @@
 .brutal-button::before {
     /* top: -10px; */
     left: -16px;
-    color: red;
-    border: 1px solid red;
+    color: var(--pixel-red);
+    border: 1px solid var(--pixel-red);
 }
 
 /* BLUE ECHO */
 .brutal-button::after {
     /* top: 10px; */
     left: 16px;
-    color: blue;
-    border: 1px solid blue;
+    color: var(--pixel-blue);
+    border: 1px solid var(--pixel-blue);
 }
 
 /* HOVER + NOT ACTIVE: shows echoes */
@@ -73,10 +73,10 @@
 
 /* ACTIVE OVERRIDES */
 .brutal-button:active{
-    background-color: --win95-fg;
-    color: --win95-bg;
-    border: 1px inset --win95-bg;
-    box-shadow: 2px 2px 0 --win95-highlight;
+    background-color: var(--eldritch-black);
+    color: var(--eldritch-orange);
+    border: 1px inset var(--eldritch-orange);
+    box-shadow: 2px 2px 0 var(--eldritch-orange);
     z-index: 0;
 }
 

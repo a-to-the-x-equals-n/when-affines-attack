@@ -1,8 +1,6 @@
-@import '../fonts.css';
 @import './bsod.css';
 @import './cosmic-terminal.css';
 @import './start-menu.css';
-@import './../windows/win95.css';
 
 
 /* === ROOT LAYOUT === */
@@ -80,8 +78,8 @@ body {
 .start-button:hover {
     /* background-color: black;
     color: black; */
-    color: limegreen;
-    border: 1px solid limegreen;
+    color: var(--pixel-green);
+    border: 1px solid var(--pixel-green);
     z-index: 0;
     border-radius: 4px;
     box-shadow: 0 0 0 black;
@@ -98,8 +96,8 @@ body {
     left: -16px;
     height: 2rem;
     width: 4.25rem;
-    color: red;
-    border: 1px solid red;
+    color: var(--pixel-red);
+    border: 1px solid var(--pixel-red);
     border-radius: 4px;
     pointer-events: none;
 
@@ -115,8 +113,8 @@ body {
     left: 16px;
     height: 2rem;
     width: 4.25rem;
-    color: blue;
-    border: 1px solid blue;
+    color: var(--pixel-blue);
+    border: 1px solid var(--pixel-blue);
     border-radius: 4px;
     pointer-events: none;
     opacity: 0;

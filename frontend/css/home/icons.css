@@ -1,17 +1,14 @@
-/* ========================
-   Base Styles for Desktop Icons
-   - Shared by ALL app/game shortcuts on desktop
-   - Inherit brutal-button effects (glitch, border, font, etc.)
-========================= */
+
 .desktop-icon {
     display: flex;
     flex-direction: column;
-    align-items: center;   /* center horizontally */
-    justify-content: center; /* center vertically */
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically */
 
     /* spacing inside the button */
     padding: 6px;
     gap: 6px;
+    margin: 5%;
 
     /* icon size */
     width: 80px;
@@ -21,48 +18,27 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
-    
-    /* no outline when clicked */
     outline: none;
-
-    /* smooth hover effect */
     transition: filter 0.2s ease, transform 0.2s ease;
-
     box-shadow: none !important;
 }
 
-/* ========================
-   Icon Image Inside Button
-   - Size and color glow (theme-aware via var)
-========================= */
 .desktop-icon img {
     width: 48px;
     height: 48px;
-    
-    /* adds a colored glow behind the icon */
-    /* filter: drop-shadow(1px 1px 0 var(--win95-accent)); */
-
     transition: filter 0.2s ease;
 }
 
-/* ========================
-   Icon Text Label
-   - Appears under the icon
-========================= */
 .icon-label {
-    font-size: 20px;
-    color: var(--win95-accent);     /* uses theme variable */
+    font-size: 26px;
+    color: var(--win95-fg);     
     font-family: var(--main-font);
     letter-spacing: 0.5px;
     text-shadow: 1px 1px var(--startbar-shadow);
     text-align: center;
+    white-space: nowrap;
+
 }
-
-
-/* ========================
-   Individual Desktop Icon Positions
-   - Adjust each icon's coordinates here
-========================= */
 
 /* Goose Game */
 #goose-icon {

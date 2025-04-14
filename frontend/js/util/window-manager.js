@@ -1,12 +1,6 @@
-// === WIN95 WINDOW MANAGER CORE ===
-let zIndexCounter = 1000; // Used to stack windows above each other as they're opened or clicked
+import { setTheme } from './themes.js'
+let zIndexCounter = 1000;
 
-/**
- * Creates and displays a new app window
- * @param {string} appId - Unique ID for the window (used to avoid duplicate windows)
- * @param {string} appTitle - Title shown in the title bar
- * @param {string} appContentHTML - Inner HTML content (can be iframe, textarea, div, etc.)
- */
 export function createAppWindow(appId, appTitle, appContentHTML) 
 {
     // === Avoid Duplicate Windows ===
