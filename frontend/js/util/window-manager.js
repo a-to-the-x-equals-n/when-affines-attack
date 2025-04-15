@@ -1,5 +1,7 @@
 import { setTheme } from './themes.js'
 let zIndexCounter = 1000;
+window.flickerTimeout = null;
+
 
 export function createAppWindow(appId, appTitle, appContentHTML) 
 {
@@ -36,6 +38,44 @@ export function createAppWindow(appId, appTitle, appContentHTML)
 
     // === Add to DOM ===
     document.body.appendChild(win);
+
+    // When iframe is available and loaded, hook flicker logic
+    const iframe = win.querySelector('iframe');
+    if (iframe) 
+    {
+        iframe.addEventListener('load', () => 
+        {
+            try 
+            {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                iframeDoc.addEventListener('pointerdown', (e) => 
+                {
+                    const btn = e.target.closest('button, .brutal-button, .start-button, [role="button"]');
+                    if (!btn) return;
+
+                    const labelTarget = btn.closest('[data-label]');
+                    const label = labelTarget?.dataset.label;
+                    if (label === 'theme' || label === 'themes') return;
+
+                    clearTimeout(window.flickerTimeout);
+
+                    const currentTheme = document.body.classList.contains('theme-cosmic') ? 'cosmic' : 'win95';
+                    const nextTheme = currentTheme === 'cosmic' ? 'win95' : 'cosmic';
+
+                    setTheme(nextTheme);
+                    window.flickerTimeout = setTimeout(() => 
+                    {
+                        setTheme(currentTheme);
+                    }, 100);
+                });
+            } 
+            catch (err) 
+            {
+                console.warn("Could not bind flicker listener to iframe:", err);
+            }
+        });
+    }
 
     // === DEFAULT SIZE: OPEN NEAR FULLSCREEN ===
     const margin = 32;

@@ -60,7 +60,7 @@ class ImageCarousel
     {
         const currentImage = this.images[this.currentIndex];
         this.elements.image.src = currentImage.image;
-        this.elements.title.textContent = currentImage.title || 'Untitled';
+        // this.elements.title.textContent = currentImage.title || 'Untitled';
         this.elements.description.textContent = currentImage.description || '';
         
         // TODO: Load vote counts from your backend
