@@ -16,8 +16,8 @@
 }
 
 .win95-window-titlebar {
-    background-color: var(--eldritch-black);
-    color: var(--eldritch-orange);
+    background-color: var(--win95-accent);
+    color: var(---win95-highlight);
     font-size: 28px;
     padding: 4px 8px;
     display: flex;
