@@ -169,7 +169,7 @@ class Goose:
         try:
             heimdahl('[QUERY] LOADING IMAGES', unveil = (larva()), threat = 2)
 
-            q = 'SELECT id, title, filepath, description, format FROM goose_images'
+            q = 'SELECT id, title, filepath, description, format, upvotes, downvotes FROM goose_images'
             self.cursor.execute(q)
             rows = self.cursor.fetchall()
 
@@ -189,7 +189,9 @@ class Goose:
                     'id': r['id'],
                     'title': r['title'],
                     'description': r['description'],
-                    'image': f'data:{mime};base64,{img_b64}'
+                    'image': f'data:image/{r["format"]};base64,{img_b64}',
+                    'upvotes': r['upvotes'],
+                    'downvotes': r['downvotes']
                 })
 
                 heimdahl(f'[LOADED] \'{r["title"]}\'', unveil = larva(), threat = 1)

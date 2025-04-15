@@ -28,7 +28,7 @@ body {
     opacity: 0;
     transition: opacity 0.4s ease;
     pointer-events: none;
-    z-index: -1; /* or -1 if needed */
+    z-index: -1; 
 }
 
 

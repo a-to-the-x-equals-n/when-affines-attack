@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-    <meta charset = "UTF-8">
-    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-    <link rel = "stylesheet" href = "../css/game/goose.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load CSS without blocking render -->
+    <link rel="preload" href="../css/game/goose.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../css/game/goose.css">
+    </noscript>
     <title>When Affines Attack</title>
 </head>
 
 <body>
 
     <div class = "display">
-
         <svg id = "goose" viewBox = "0 0 100 100" width = "80" height = "80">
         <!-- head -->
         <rect x = "58" y = "10" width = "14" height = "10" fill = "white"/>
@@ -27,10 +30,10 @@
       </svg>
       <div id="gameOverMessage">- GAME OVER -</div>
     </div>
+
     <div id = "info"></div>
     <div id = "lives"></div>
     
-
     <script type = "module" src = "../js/goose_game/main.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ export function createAppWindow(appId, appTitle, appContentHTML)
         <div class="theme-win95 win95-window-titlebar">
             <span class="win95-window-title">${appTitle}</span>
             <div class="win95-window-controls">
+                <button class="win95-window-minimize brutal-button button" title="Minimize">_</button>
                 <button class="win95-window-maximize brutal-button button" title="Maximize">☐</button>
                 <button class="win95-window-close brutal-button button" title="Close">✕</button>
             </div>
@@ -30,7 +31,7 @@ export function createAppWindow(appId, appTitle, appContentHTML)
         <div class="win95-window-content">
             ${appContentHTML}
         </div>
-        <div class="win95-window-resizer"></div>
+        <!-- <div class="win95-window-resizer"></div> -->
     `;
 
     // === Add to DOM ===
@@ -44,14 +45,15 @@ export function createAppWindow(appId, appTitle, appContentHTML)
     win.style.top = `${margin}px`;
 
     makeDraggable(win);
-    makeResizable(win);
+    // makeResizable(win);
     addMaximizeBehavior(win);
+    addMinimizeBehavior(win, appId, appTitle);
     addCloseBehavior(win);
     bringToFront(appId);
 }
 
 // === BRING TO FRONT ===
-// Increments zIndex and applies to the window so it's not hidden behind others
+// increments zIndex and applies to window so it's not behind others
 function bringToFront(appId) 
 {
     const win = document.querySelector(`#${appId}`);
@@ -62,7 +64,7 @@ function bringToFront(appId)
 }
 
 // === CLOSE BUTTON BEHAVIOR ===
-// Clicking the ✕ will remove the window from the DOM
+// clicking the ✕ will remove the window from the DOM
 function addCloseBehavior(win) 
 {
     const closeBtn = win.querySelector('.win95-window-close');
@@ -114,11 +116,44 @@ function addMaximizeBehavior(win)
     });
 }
 
+function addMinimizeBehavior(win, appId, appTitle) 
+{
+	const minimizeBtn = win.querySelector('.win95-window-minimize');
+	const taskbarContent = document.querySelector('.taskbar-apps');
+
+	minimizeBtn.addEventListener('click', () => 
+	{
+		win.style.display = 'none';
+
+		let taskButton = document.querySelector(`.taskbar-button[data-app="${appId}"]`);
+		if (!taskButton) 
+		{
+			taskButton = document.createElement('button');
+			taskButton.classList.add('taskbar-button', 'brutal-button');
+			taskButton.dataset.app = appId;
+			taskButton.textContent = appTitle;
+            taskButton.title = appTitle;
+            console.log('Creating task button:', appId, appTitle);
 
 
+			taskbarContent.appendChild(taskButton);
+
+			taskButton.addEventListener('click', () => 
+			{
+				win.style.display = 'block';
+				bringToFront(appId);
+				taskButton.remove();
+			});
+		} 
+		else 
+		{
+			taskButton.click();
+		}
+	});
+}
 
 // === DRAGGING FUNCTIONALITY ===
-// Allows user to drag the window around the screen using the title bar
+// allows user to drag the window around the screen using the title bar
 function makeDraggable(win)
 {
     const titlebar = win.querySelector('.win95-window-titlebar');
@@ -147,61 +182,61 @@ function makeDraggable(win)
 
 // === RESIZING FUNCTIONALITY ===
 // Adds ability to resize the window from the bottom-right corner
-function makeResizable(win) 
-{
-    const resizer = win.querySelector('.win95-window-resizer');
-    let isResizing = false;
-    let startX, startY, startWidth, startHeight;
+// function makeResizable(win) 
+// {
+//     const resizer = win.querySelector('.win95-window-resizer');
+//     let isResizing = false;
+//     let startX, startY, startWidth, startHeight;
 
-    resizer.addEventListener('mousedown', (e) => 
-    {
-        isResizing = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        startWidth = parseInt(document.defaultView.getComputedStyle(win).width, 10);
-        startHeight = parseInt(document.defaultView.getComputedStyle(win).height, 10);
-        e.preventDefault(); // Prevent text selection
-    });
+//     resizer.addEventListener('mousedown', (e) => 
+//     {
+//         isResizing = true;
+//         startX = e.clientX;
+//         startY = e.clientY;
+//         startWidth = parseInt(document.defaultView.getComputedStyle(win).width, 10);
+//         startHeight = parseInt(document.defaultView.getComputedStyle(win).height, 10);
+//         e.preventDefault(); // Prevent text selection
+//     });
 
-    document.addEventListener('mousemove', (e) => 
-    {
-        if (!isResizing) return;
-        win.style.width = `${startWidth + e.clientX - startX}px`;
-        win.style.height = `${startHeight + e.clientY - startY}px`;
-    });
+//     document.addEventListener('mousemove', (e) => 
+//     {
+//         if (!isResizing) return;
+//         win.style.width = `${startWidth + e.clientX - startX}px`;
+//         win.style.height = `${startHeight + e.clientY - startY}px`;
+//     });
 
-    document.addEventListener('mouseup', () => 
-    {
-        isResizing = false;
-    });
-}
+//     document.addEventListener('mouseup', () => 
+//     {
+//         isResizing = false;
+//     });
+// }
 
 
-document.addEventListener('DOMContentLoaded', function () 
-{
-    let flickerTimeout = null;
+// document.addEventListener('DOMContentLoaded', function () 
+// {
+//     let flickerTimeout = null;
 
-    document.addEventListener('pointerdown', function (e) 
-    {
-        // if (e.target.closest('.brutal-button') || e.target.closest('.start-button')) 
-        if (e.target.closest('button, .brutal-button, .start-button, [role="button"]'))
-        {
-            // Clear previous flicker if user spam-clicks
-            clearTimeout(flickerTimeout);
+//     document.addEventListener('pointerdown', function (e) 
+//     {
+//         // if (e.target.closest('.brutal-button') || e.target.closest('.start-button')) 
+//         if (e.target.closest('button, .brutal-button, .start-button, [role="button"]'))
+//         {
+//             // Clear previous flicker if user spam-clicks
+//             clearTimeout(flickerTimeout);
 
-            // Trigger quick flicker: switch to 'cosmic' for ~100ms
-            setTheme('cosmic');
+//             // Trigger quick flicker: switch to 'cosmic' for ~100ms
+//             setTheme('cosmic');
 
-            flickerTimeout = setTimeout(() => 
-            {
-                setTheme('win95');
-            }, 100);  // This delay = flicker duration
-        }
-    });
+//             flickerTimeout = setTimeout(() => 
+//             {
+//                 setTheme('win95');
+//             }, 100);  // This delay = flicker duration
+//         }
+//     });
 
-    // Edge case cleanup
-    window.addEventListener('blur', function () 
-    {
-        clearTimeout(flickerTimeout);
-    });
-});
+//     // Edge case cleanup
+//     window.addEventListener('blur', function () 
+//     {
+//         clearTimeout(flickerTimeout);
+//     });
+// });
