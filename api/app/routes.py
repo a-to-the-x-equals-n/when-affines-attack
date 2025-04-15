@@ -34,11 +34,12 @@ def get_images():
 
 @app.route('/vote', methods = ['POST'])
 def handle_vote():
-    heimdahl('[ADD VOTE ROUTE]', unveil = (settings.VB or settings.DEV), threat=2)
+    heimdahl('[VOTE ROUTE]', unveil = (settings.VB or settings.DEV), threat = 2)
     
     try:
         data = request.get_json()
         if not data or 'imageId' not in data or 'vote' not in data:
+            heimdahl('[VOTE ERROR] Missing Required Fields', unveil = (settings.VB or settings.DEV), threat = 3)
             return jsonify({'error': 'Missing required fields'}), 400
             
         image_id = data['imageId']
@@ -46,10 +47,12 @@ def handle_vote():
         
         success = goose.register_vote(image_id, vote_value)
         if not success:
+            heimdahl('[VOTE ERROR] Vote Registration Failed', unveil = (settings.VB or settings.DEV), threat = 3)
             return jsonify({'error': 'Vote registration failed'}), 500
             
         # return updated counts
         counts = goose.get_votes(image_id)
+        heimdahl('[VOTE ROUTE] Votes Returned', unveil = (settings.VB or settings.DEV), threat = 3)
         return jsonify({
             'message': 'Vote recorded',
             'upvotes': counts['upvotes'],
