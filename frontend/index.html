@@ -15,23 +15,30 @@
         <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         
         <!-- Preload internal CSS (if critical above-the-fold) -->
-        <link rel="preload" href="css/home/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <link rel="preload" href="css/themes.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <link rel="preload" href="css/home/icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="css/themes/themes.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="css/desktop/icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="css/themes/brutal-button-base.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="css/desktop/win95.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="css/desktop/start-bar.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
       
         <!-- Fallback for non-JS browsers -->
         <noscript>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap">
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-          <link rel="stylesheet" href="css/home/index.css">
-          <link rel="stylesheet" href="css/themes.css">
-          <link rel="stylesheet" href="css/home/icons.css">
+          <!-- INTERNAL -->
+          <link rel="stylesheet" href="css/main.css">
+          <link rel="stylesheet" href="css/themes/themes.css">
+          <link rel="stylesheet" href="css/themes/brutal-button-base.css">
+          <link rel="stylesheet" href="css/desktop/icons.css">
+          <link rel="stylesheet" href="css/desktop/win95.css">
+          <link rel="stylesheet" href="css/desktop/start-bar">
         </noscript>
       
     
         <!-- Title (should be early for SEO) -->
-        <title>Home</title>
+        <title>Desktop</title>
       
         <!-- Non-critical JS (loaded with defer) -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -75,8 +82,10 @@
             <ul class = "start-menu-list">
                 <li class = 'start-menu-item brutal-button' data-label = 'game'>//game.sh</li>
                 <li class = 'start-menu-item brutal-button' data-label = 'vibes'>c:\>vibes</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'gooses'>__vote__(gooses)</li>
+                <li class = 'start-menu-item brutal-button' data-label = 'gooses'>__vote__(gs)</li>
                 <li class = 'start-menu-item brutal-button' data-label = 'themes'>$(rePAINT)</li>
+                <li class = 'start-menu-item brutal-button' data-label = 'upload'>魂.skynet</li>
+                <li class = 'start-menu-item brutal-button' data-label = 'afghanistan'>f'{credit++}'</li>
             </ul>
         </div>
 
@@ -95,13 +104,25 @@
         <!-- CAROUSEL ICON -->
         <button id="carousel-icon" class="desktop-icon brutal-button" data-label = ''>
             <img src="./assets/icons/photos-ico.svg" alt="belle lettres"/>
-            <span class="icon-label" data-label = 'gooses'>__vote__(gooses)</span>
+            <span class="icon-label" data-label = 'gooses'>__vote__(gs)</span>
         </button>
 
         <!-- THEME ICON -->
         <button id="themes-icon" class="desktop-icon brutal-button" data-label = ''>
             <img src="./assets/icons/themes-ico.svg" alt="repaint"/>
             <span class="icon-label" data-label = 'theme'>$(rePAINT)</span>
+        </button>
+
+        <!-- UPLOAD ICON -->
+        <button id="upload-icon" class="desktop-icon brutal-button" data-label = ''>
+            <img src="./assets/icons/floppydisk.svg" alt="upload"/>
+            <span class="icon-label" data-label = 'upload'>魂.skynet</span>
+        </button>
+
+        <!-- AFGHAN ICON -->
+        <button id="afghanistan-icon" class="desktop-icon brutal-button" data-label = ''>
+            <img src="./assets/icons/afghanistan.svg" alt="upload"/>
+            <span class="icon-label" data-label = 'afghanistan'>f'{credit++}'</span>
         </button>
 
         <!-- MAIN SCRIPTS-->

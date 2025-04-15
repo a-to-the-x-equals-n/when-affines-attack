@@ -1,31 +1,3 @@
-@import './bsod.css';
-@import './cosmic-terminal.css';
-@import './start-menu.css';
-@import '../windows/win95.css';
-
-
-/* === ROOT LAYOUT === */
-body {
-    background-color: var(--theme-bg-color);
-    padding-bottom: 1.2% !important;
-    height: 100vh;
-}
-
-/* === MAIN LANDING SECTION === */
-#landing {
-    position: relative;
-    display: none;
-
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    height: 100%;
-
-    background-image: var(--theme-bg-image) !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
 
 /* === START BAR === */
 .start-bar {
@@ -112,15 +84,66 @@ body {
 	position: relative;
 }
 
-#transition-blackout {
+.start-menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
+    bottom: 51px;
+    left: 16px;
+
+    min-width: 150px;
+    width: auto;
+
+    background-color: var(--win95-bg);
+    border: 2px outset var(--win95-light);
+    box-shadow: 2px 2px 0 var(--win95-dark);
+
+    color: var(--win95-fg);
+    font-family: var(--main-font);
+
+    z-index: 9000;
+
     opacity: 0;
     pointer-events: none;
-    z-index: 99999; /* above everything */
-    transition: opacity .4s linear;
+    transition: opacity 0.3s ease;
+}
+
+/* Show menu when .visible class is added */
+.start-menu.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Hide completely after fade-out ends */
+.start-menu.hidden {
+    display: none;
+}
+
+/* Utility class to hide by default */
+.hidden {
+    display: none;
+}
+
+.start-menu-list {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.start-menu-item {
+    padding: 0.25rem 2px;
+    border-bottom: 1px solid var(--win95-light);
+    box-shadow: 2px 2px 0 var(--win95-dark);
+    cursor: pointer;
+    user-select: none;
+    font-size: 20px;
+    font-family: var(--main-font);
+}
+
+.start-menu .brutal-button {
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    font-size: 22px;
 }

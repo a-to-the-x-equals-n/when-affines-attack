@@ -1,4 +1,5 @@
 
+
 .desktop-icon {
     display: flex;
     flex-direction: column;
@@ -11,13 +12,13 @@
     margin: 5%;
 
     /* icon size */
-    width: 80px;
-    height: 80px;
+    width: 80px !important;
+    height: 80px !important;
 
     /* interaction */
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
+    cursor: pointer !important;
+    background-color: transparent !important;
+    border: none !important;
     outline: none;
     transition: filter 0.2s ease, transform 0.2s ease;
     box-shadow: none !important;
@@ -55,7 +56,7 @@
 /* RGB Echoes on the label */
 .desktop-icon .icon-label::before,
 .desktop-icon .icon-label::after {
-    content: attr(data-label); /* use a matching attribute for text clone */
+    content: attr(data-label); 
     position: absolute;
     left: 0;
     width: 100%;
@@ -86,27 +87,39 @@
 /* Goose Game */
 #goose-icon {
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 1%;
 }
 
 /* Vibes / TV Radio */
 #vibes-icon {
     position: absolute;
-    top: 130px;
+    top: 135px;
     left: 1%;
 }
 
 /* Carousel / Photos */
 #carousel-icon {
     position: absolute;
-    top: 250px;
+    top: 255px;
     left: 1%;
 }
 
 /* Theme Switcher */
 #themes-icon {
     position: absolute;
-    top: 370px;
-    left: 1%;
+    top: -10;
+    left: 9%;
+}
+
+#upload-icon {
+    position: absolute;
+    top: 110px;
+    left: 9%;
+}
+
+#afghanistan-icon {
+    position: absolute;
+    top: 230px;
+    left: 9%;
 }

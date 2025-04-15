@@ -1,18 +1,16 @@
-import { setTheme } from '../util/themes.js';
-import { createAppWindow } from '../util/window-manager.js';
+import { setTheme } from './themes.js';
+import { createAppWindow } from './window-manager.js';
 
 // === DESKTOP ICON BUTTONS ===
 document.addEventListener('DOMContentLoaded', function () 
 {
 	const desktopIcons = document.querySelectorAll('.desktop-icon');
-
 	desktopIcons.forEach((iconBtn) => 
     {
 		iconBtn.addEventListener('click', () => 
         {
 			const labelSpan = iconBtn.querySelector('.icon-label');
 			const label = labelSpan?.dataset.label;
-
 			if (!label) return;
 
 			switch (label) 
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function ()
 					break;
 
 				case 'vibes':
-					createAppWindow('tv-vibes', 'CRT-TV.exe', `
+					createAppWindow('tv-vibes', 'TV.crt', `
 						<iframe 
 							src="pages/vibes.html" 
 							width="100%" 
@@ -45,6 +43,30 @@ document.addEventListener('DOMContentLoaded', function ()
 					createAppWindow('carousel-vote', 'belles-lettres.exe', `
 						<iframe 
 							src="pages/belles-lettres.html" 
+							width="100%" 
+							height="100%" 
+							frameborder="0" 
+							style="border: none;">
+						</iframe>
+					`);
+					break;
+
+				case 'afghan':
+					createAppWindow('afghan-page', 'afghan.html', `
+						<iframe 
+							src="pages/afghan.html" 
+							width="100%" 
+							height="100%" 
+							frameborder="0" 
+							style="border: none;">
+						</iframe>
+					`);
+					break;
+
+				case 'upload':
+					createAppWindow('upload-page', 'upload.cmd', `
+						<iframe 
+							src="pages/upload.html" 
 							width="100%" 
 							height="100%" 
 							frameborder="0" 
@@ -94,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function ()
 					break;
 
 				case 'vibes':
-					createAppWindow('tv-vibes', 'CRT-TV.exe', `
+					createAppWindow('tv-vibes', 'TV.crt', `
 						<iframe 
 							src="pages/vibes.html" 
 							width="100%" 
@@ -109,6 +131,30 @@ document.addEventListener('DOMContentLoaded', function ()
 					createAppWindow('carousel-vote', 'belles-lettres.exe', `
 						<iframe 
 							src="pages/belles-lettres.html" 
+							width="100%" 
+							height="100%" 
+							frameborder="0" 
+							style="border: none;">
+						</iframe>
+					`);
+					break;
+
+				case 'afghan':
+					createAppWindow('afghan-page', 'afghan.html', `
+						<iframe 
+							src="pages/afghan.html" 
+							width="100%" 
+							height="100%" 
+							frameborder="0" 
+							style="border: none;">
+						</iframe>
+					`);
+					break;
+
+				case 'upload':
+					createAppWindow('upload-page', 'upload.cmd', `
+						<iframe 
+							src="pages/upload.html" 
 							width="100%" 
 							height="100%" 
 							frameborder="0" 

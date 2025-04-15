@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,8 @@
 </head>
 <body class="theme-win95">
     <div class="carousel-container">
-        <!-- <p id="imageTitle"></p> -->
+        <div id="imageDescription"></div>
+
         <div class="carousel">
             <button id="prevBtn" class="brutal-button" data-label="❮">❮</button>
             <div id = 'image-container'>
@@ -25,9 +26,76 @@
             <button id="thumbsDownBtn" class="brutal-button">👎 <span id="thumbsDownCount"></span></button>
         </div>
 
-        <div id="imageDescription"></div>
     </div>
 
     <script type="module" src="../js/vote/carousel.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://d3js.org">
+    <link rel="preconnect" href="http://localhost:8003" crossorigin>
+    
+    <!-- Preload CSS with onload handler -->
+    <link rel="preload" href="../css/themes/themes.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../css/themes/brutal-button-base.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../css/windows/win95.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../css/vote/carousel.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../css/vote/goose-viz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://d3js.org/d3.v7.min.js" as="script">
+    
+    <!-- No-JS fallback for CSS -->
+    <noscript>
+        <link rel="stylesheet" href="../css/themes/themes.css">
+        <link rel="stylesheet" href="../css/themes/brutal-button-base.css">
+        <link rel="stylesheet" href="../css/desktop/win95.css">
+        <link rel="stylesheet" href="../css/vote/carousel.css">
+        <link rel="stylesheet" href="../css/vote/goose-viz.css">
+    </noscript>
+    
+    <title>belles-lettres</title>
+</head>
+
+<body class="theme-win95">
+
+    <!-- CAROUSEL -->
+    <div class="carousel-container">
+        <!-- IMAGE DESCRIPTION -->
+        <div id="imageDescription"></div>
+        <div class="carousel">
+            <!-- LEFT -->
+            <button id="prevBtn" class="brutal-button" data-label="❮">❮</button>
+            <!-- GOOSE IMAGE -->
+            <div id="image-container"><img id="carouselImage" alt="Carousel Image" loading="lazy"></div>
+            <!-- RIGHT -->
+            <button id="nextBtn" class="brutal-button" data-label="❯">❯</button>
+        </div>
+
+        <!-- VOTING -->
+        <div class="voting">
+            <button id="thumbsUpBtn" class="brutal-button">👍 <span id="thumbsUpCount"></span></button>
+            <button id="thumbsDownBtn" class="brutal-button">👎 <span id="thumbsDownCount"></span></button>
+        </div>
+
+        <!-- ANI-GOOSE -->
+        <div id="goose-meter">
+            <svg width="200" height="120"></svg>
+        </div>
+        <div id="flying-geese"></div>
+    </div>
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Separate JS files -->
+    <script type="module" src="../js/vote/carousel.js"></script>
+    <script type="module" src="../js/vote/goose-viz.js"></script>
 </body>
 </html>

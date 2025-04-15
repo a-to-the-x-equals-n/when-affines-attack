@@ -1,0 +1,39 @@
+@import './landing/bsod.css';
+@import './landing/cosmic-terminal.css';
+
+
+/* === ROOT LAYOUT === */
+body {
+    background-color: var(--theme-bg-color);
+    padding-bottom: 1.2% !important;
+    height: 100vh;
+}
+
+/* === MAIN LANDING SECTION === */
+#landing {
+    position: relative;
+    display: none;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: 100%;
+
+    background-image: var(--theme-bg-image) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#transition-blackout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99999; /* above everything */
+    transition: opacity .4s linear;
+}

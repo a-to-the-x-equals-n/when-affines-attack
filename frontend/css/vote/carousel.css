@@ -17,7 +17,19 @@ body {
 	align-items: center;
 	width: 100%;
 	padding: 1rem;
-    
+}
+
+#imageDescription {
+    color: var(--win95-fg);
+    max-width: unset; /* allow overflow */
+    font-size: 4rem;
+    width: 100%;
+	text-align: center;
+	font-family: var(--main-font);
+    overflow: visible;
+    word-wrap: break-word;
+	overflow-wrap: break-word;
+	white-space: normal;
 }
 
 /* === IMAGE CAROUSEL === */
@@ -71,28 +83,7 @@ body {
 	height: 97%;
 	object-fit: contain;
 	pointer-events: none;
-	user-select: none;              
-}
-
-#imageTitle {
-    color: var(--win95-fg);
-	font-size: 2rem;
-	margin: 0.5rem 0 0;
-	font-family: var(--main-font);
-}
-
-#imageDescription {
-    margin-top: 1rem;
-    color: var(--win95-fg);
-    max-width: unset; /* allow overflow */
-    font-size: 4rem;
-    width: 100%;
-	text-align: center;
-	font-family: var(--main-font);
-    overflow: visible;
-    word-wrap: break-word;
-	overflow-wrap: break-word;
-	white-space: normal;
+	user-select: none;           
 }
 
 /* === VOTE CONTROLS === */

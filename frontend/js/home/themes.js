@@ -1,9 +1,7 @@
 // === THEME SWITCHER ===
-const themes = ['theme-win95', 'theme-cosmic'];
+const allThemes = ['theme-win95', 'theme-cosmic'];
 export function setTheme(themeName) 
 {
-	const allThemes = ['theme-win95', 'theme-cosmic'];
-
 	// Update main window
 	document.body.classList.remove(...allThemes);
 	document.body.classList.add(`theme-${themeName}`);
