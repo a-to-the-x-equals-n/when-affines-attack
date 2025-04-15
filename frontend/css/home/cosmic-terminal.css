@@ -4,11 +4,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* background-color: #3b2b2b; */
     background-color: #0000AA;
     color: white;
-    /* background-color: #201c1c;
-    color: #ffa500; */
     opacity: 1;                        
     transition: opacity 1s ease;   
 }
@@ -23,7 +20,7 @@
     padding: 1%;
 
     font-family: 'IBM Plex Mono', monospace !important;
-    font-size: 20px;
+    font-size: 22px;
     letter-spacing: 1px;
     
     z-index: 9999;
@@ -32,10 +29,11 @@
 }
 
 #cosmic-terminal-text {
+    font-size: 22px;
     flex: 1;    
     text-align: left;
     line-height: 1.6;
-    padding: 2%px;
+    padding: 2px;
     font-family: 'IBM Plex Mono', monospace;
     overflow-y: auto;       /* <— enables vertical scroll */
     height: 100%;           

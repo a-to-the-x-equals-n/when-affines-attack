@@ -76,7 +76,11 @@ body {
     min-width: 4.5rem;
     width: auto;
 
-    box-shadow: 2px 2px 0 var(--win95-dark);
+    color: var(--win95-fg);
+	background-color: var(--win95-bg);
+
+	border: 2px outset var(--win95-light);
+	box-shadow: 2px 2px 0 var(--win95-dark); /* match start button */
     margin-right: 2.5rem;
 }
 
@@ -85,10 +89,13 @@ body {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
 	height: 30px;
 	min-width: 120px;
 	max-width: 180px;
+    width: auto;
 
 	margin-left: 6px;
 	padding: 0 10px;
@@ -103,7 +110,6 @@ body {
 	cursor: pointer;
 
 	position: relative;
-	top: 2px;
 }
 
 #transition-blackout {

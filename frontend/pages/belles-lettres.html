@@ -4,48 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/carousel.css">
+    <link rel = 'stylesheet' href = '../css/home/btn-base.css'>
+    <link rel = 'stylesheet' href = '../css/windows/win95.css'>
+    <link rel="stylesheet" href="../css/themes.css"> 
     <title>belles-lettres</title>
-    <style>
-        .carousel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .carousel {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        #carouselImage {
-            max-width: 600px;
-            max-height: 400px;
-            border: 1px solid #ccc;
-        }
-        .carousel-controls {
-            display: flex;
-            gap: 1rem;
-        }
-        .vote-controls {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        .image-meta {
-            text-align: center;
-            margin-top: 1rem;
-            font-family: monospace;
-        }
-    </style>
 </head>
 <body>
     <div class="carousel-container">
         <div class="carousel">
-            <button id="prevBtn">❮</button>
             <img id="carouselImage" alt="Carousel Image" loading="lazy">
-            <button id="nextBtn">❯</button>
+            <button id="prevBtn" class="brutal-button" data-label="❮">❮</button>
+            <button id="nextBtn" class="brutal-button" data-label="❯">❯</button>
         </div>
         
         <div class="image-meta">
@@ -54,8 +23,8 @@
         </div>
         
         <div class="vote-controls">
-            <button id="thumbsUpBtn">👍 <span id="thumbsUpCount">0</span></button>
-            <button id="thumbsDownBtn">👎 <span id="thumbsDownCount">0</span></button>
+            <button id="thumbsUpBtn" class="brutal-button" data-label="👍">👍 <span id="thumbsUpCount">0</span></button>
+            <button id="thumbsDownBtn" class="brutal-button" data-label="👎">👎 <span id="thumbsDownCount">0</span></button>
         </div>
     </div>
 

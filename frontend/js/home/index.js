@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function ()
 // === START MENU BUTTONS ===
 document.addEventListener('DOMContentLoaded', function () 
 {
-	const menuItems = ['game', 'vibes', 'gooses', 'theme'];
+	const menuItems = ['game', 'vibes', 'gooses', 'themes'];
 
 	menuItems.forEach((label) => 
     {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function ()
 					break;
 
 				case 'gooses':
-					createAppWindow('carousel-vote', 'VoteGoose.exe', `
+					createAppWindow('carousel-vote', 'belles-lettres.exe', `
 						<iframe 
 							src="pages/belles-lettres.html" 
 							width="100%" 
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function ()
 					`);
 					break;
 
-				case 'theme':
+				case 'themes':
 					const currentTheme = document.body.classList.contains('theme-cosmic') ? 'cosmic' : 'win95';
 					const nextTheme = currentTheme === 'cosmic' ? 'win95' : 'cosmic';
 					setTheme(nextTheme);
@@ -179,36 +179,46 @@ document.addEventListener('DOMContentLoaded', function ()
     startMenu.addEventListener('mouseleave', scheduleMenuClose);
 });
 
-// === MOUSECLICK THEME FLICKER ==
+// === MOUSECLICK THEME FLICKER ===
 document.addEventListener('DOMContentLoaded', function () 
 {
 	let flickerTimeout = null;
 
 	document.addEventListener('pointerdown', function (e) 
-    {
-		const button = e.target.closest('button, .brutal-button, .start-button, [role="button"]');
-		if (!button) return;
+	{
+		// Match anything interactive — buttons, list items, etc.
+		const interactive = e.target.closest('[data-label], button, .brutal-button, .start-button, li, [role="button"]');
+		if (!interactive) return;
 
-		// if button or any child has data-label "theme" or "themes"
-		const ignoredLabel = button.querySelector('[data-label="theme"], [data-label="themes"]')?.dataset.label;
-		if (ignoredLabel === 'theme' || ignoredLabel === 'themes') return;
+		// Grab label if present
+		let label = interactive.dataset?.label?.trim().toLowerCase();
 
-		// clear previous flicker if user spam-clicks
+		// If not on self, try child element with data-label
+		if (!label) 
+		{
+			const inner = interactive.querySelector('[data-label]');
+			label = inner?.dataset?.label?.trim().toLowerCase() || null;
+		}
+
+		// Ignore flicker for theme icons
+		if (label === 'theme' || label === 'themes') return;
+
+		// Flicker time
 		clearTimeout(flickerTimeout);
 
 		const currentTheme = document.body.classList.contains('theme-cosmic') ? 'cosmic' : 'win95';
 		const nextTheme = currentTheme === 'cosmic' ? 'win95' : 'cosmic';
 
-		// trigger quick flicker
 		setTheme(nextTheme);
+
 		flickerTimeout = setTimeout(() => 
-        {
+		{
 			setTheme(currentTheme);
 		}, 100);
 	});
 
 	window.addEventListener('blur', function () 
-    {
+	{
 		clearTimeout(flickerTimeout);
 	});
 });

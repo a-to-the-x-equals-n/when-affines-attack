@@ -23,6 +23,7 @@
     z-index: 1;
 
     position: relative;
+    overflow: visible;
 }
 
 /* HOVER STATE */
