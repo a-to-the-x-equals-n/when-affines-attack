@@ -37,33 +37,76 @@
     text-shadow: 1px 1px var(--startbar-shadow);
     text-align: center;
     white-space: nowrap;
+}
 
+.desktop-icon .icon-label {
+    position: relative; 
+    font-size: 26px;
+    transition: all 0.2s ease;
+}
+
+.desktop-icon:hover:not(:active) .icon-label {
+    content: attr(data-label);
+    color: var(--pixel-green);
+    animation: echo-glitch 0.3s infinite alternate;
+    font-size: 30px;
+}
+
+/* RGB Echoes on the label */
+.desktop-icon .icon-label::before,
+.desktop-icon .icon-label::after {
+    content: attr(data-label); /* use a matching attribute for text clone */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0;
+    font-size: inherit;
+    text-align: center;
+    z-index: 0;
+    transition: opacity 0.2s ease;
+}
+
+.desktop-icon .icon-label::before {
+    top: -12px;
+    color: var(--pixel-red);
+}
+
+.desktop-icon .icon-label::after {
+    top: 12px;
+    color: var(--pixel-blue);
+}
+
+.desktop-icon:hover .icon-label::before,
+.desktop-icon:hover .icon-label::after {
+    opacity: 1;
+    animation: echo-glitch 0.3s infinite alternate;
 }
 
 /* Goose Game */
 #goose-icon {
     position: absolute;
-    top: 60px;
-    left: 60px;
+    top: 10px;
+    left: 1%;
 }
 
 /* Vibes / TV Radio */
 #vibes-icon {
     position: absolute;
-    top: 60px;
-    left: 160px;
+    top: 130px;
+    left: 1%;
 }
 
 /* Carousel / Photos */
 #carousel-icon {
     position: absolute;
-    top: 60px;
-    left: 260px;
+    top: 250px;
+    left: 1%;
 }
 
 /* Theme Switcher */
 #themes-icon {
     position: absolute;
-    top: 60px;
-    left: 360px;
+    top: 370px;
+    left: 1%;
 }

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function ()
 // NAV TO GOOSE PAGE
 document.addEventListener('DOMContentLoaded', function () 
 {
-    const gameButton = document.querySelector('[data-label = "game"]');
+    const gameButton = document.querySelector("[data-label = 'game']");
 
     gameButton.addEventListener('click', function () 
     {
@@ -70,14 +70,22 @@ document.addEventListener('DOMContentLoaded', function ()
     });
 });
 
-// NAV TO GOOSE PAGE
+// NAV TO TV/VIBES WINDOW
 document.addEventListener('DOMContentLoaded', function () 
 {
-    const gameButton = document.querySelector('[data-label = "vibes"]');
+    const vibesButton = document.querySelector('[data-label = "vibes"]');
 
-    gameButton.addEventListener('click', function () 
+    vibesButton.addEventListener('click', function () 
     {
-        window.location.href = 'pages/vibes.html';
+        createAppWindow('tv-vibes', 'CRT-TV.exe', `
+            <iframe 
+                src="pages/vibes.html" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border: none;">
+            </iframe>
+        `);
     });
 });
 

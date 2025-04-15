@@ -1,6 +1,7 @@
 @import './bsod.css';
 @import './cosmic-terminal.css';
 @import './start-menu.css';
+@import '../windows/win95.css';
 
 
 /* === ROOT LAYOUT === */
@@ -59,99 +60,12 @@ body {
     justify-content: center;
     position: absolute;
     left: 12px;
-
+    font-size: 22px;
     height: 2rem;
-    /* width: 4.25rem; */
-    border-radius: 4px;
+    min-width: 4.25rem;
+    width: auto;
 
-    /* border: 1px offset white; */
-    background-color: var(--win95-bg);
     box-shadow: 2px 2px 0 var(--win95-dark);
-    color: var(--win95-fg);
-
-    font-family: "VT323", monospace;
-    font-size: 20px;
-
-    cursor: pointer;
-}
-
-.start-button:hover {
-    /* background-color: black;
-    color: black; */
-    color: var(--pixel-green);
-    border: 1px solid var(--pixel-green);
-    z-index: 0;
-    border-radius: 4px;
-    box-shadow: 0 0 0 black;
-    transition: opacity 0.2s ease, transform 0.4s linear;
-    animation: echo-glitch 0.3s infinite alternate;
-}
-
-
-/* Create the red echo (above) */
-.start-button::before {
-    content: "start";
-    position: absolute;
-    top: -10px;
-    left: -16px;
-    height: 2rem;
-    width: 4.25rem;
-    color: var(--pixel-red);
-    border: 1px solid var(--pixel-red);
-    border-radius: 4px;
-    pointer-events: none;
-
-    opacity: 0;
-    z-index: 0;
-}
-
-/* Create the blue echo (right) */
-.start-button::after {
-    content: "start";
-    position: absolute;
-    top: 10px;
-    left: 16px;
-    height: 2rem;
-    width: 4.25rem;
-    color: var(--pixel-blue);
-    border: 1px solid var(--pixel-blue);
-    border-radius: 4px;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 0;
-}
-
-
-/* Start hidden */
-.start-button::before,
-.start-button::after {
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.4s linear;
-}
-
-
-/* Show echoes only while hovering, but not clicking */
-.start-button:hover:not(:active)::before,
-.start-button:hover:not(:active)::after {
-    opacity: 1;
-    animation: echo-glitch 0.3s infinite alternate;
-}
-
-.start-button:active {
-    background-color: #201c1c;
-    color: #ffa500;
-    border: 1px solid #201c1c;
-    z-index: 0;
-    border-radius: 4px;
-}
-
-
-@keyframes echo-glitch {
-    0%   { transform: translate(0, 0); }
-    25%  { transform: translate(-2px, 2px); }
-    50%  { transform: translate(2px, -2px); }
-    75%  { transform: translate(-2px, -2px); }
-    100% { transform: translate(2px, 2px); }
 }
 
 #transition-blackout {
@@ -166,4 +80,3 @@ body {
     z-index: 99999; /* above everything */
     transition: opacity .4s linear;
 }
-

@@ -1,11 +1,14 @@
 
 let players = {};
 let currentIndex = 0;
-const channels = ["vaporwave", "lofi", "retro"];
+const channels = ["cyberwaste", "lifestream", "starfighter", "goodjoe", "warpdrive"];
 let tvIsOn = false; 
-const videoIds = {vaporwave: "G1flq8LKkzk", lofi: "BrnDlRmW5hs", retro: "MxGJCjNa-80"};
+const videoIds = {cyberwaste: "G1flq8LKkzk", lifestream: "nnTSSCGCGlc", starfighter: "NnXz8WcpJsg", goodjoe: "7d6rzXVlbjg", warpdrive: "zTEu81_KFGs"};
 let tvLoopPlayer = null;
 
+const tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
 
 
 function onYouTubeIframeAPIReady() 
@@ -17,7 +20,7 @@ function onYouTubeIframeAPIReady()
         videoId: "YKOfHZReZEs",
         playerVars: 
         {
-            autoplay: 1,
+            autoplay: 0,
             mute: 1,
             controls: 0,
             modestbranding: 1,
@@ -43,13 +46,15 @@ function onYouTubeIframeAPIReady()
         }
     });
 
-    channels.forEach((channel) => 
+    channels.forEach((channelName) => 
     {
-        players[channel] = new YT.Player(`channel-${channel}`, 
+        const containerId = `channel-${channelName}`;
+        const videoId = videoIds[channelName];
+    
+        players[channelName] = new YT.Player(containerId, 
         {
-            videoId: videoIds[channel],
-            playerVars: 
-            {
+            videoId: videoId,
+            playerVars: {
                 autoplay: 1,
                 mute: 1,
                 controls: 0,
@@ -57,18 +62,23 @@ function onYouTubeIframeAPIReady()
                 rel: 0,
                 showinfo: 0
             },
-            events: 
-            {
-                onReady: (event) => 
+            events: {
+                onReady: function (event) 
                 {
-                    if (channel !== channels[currentIndex]) 
+                    console.log(`${channelName} is ready.`);
+                    // Only auto-play the current channel
+                    if (channelName !== channels[currentIndex]) 
                     {
                         event.target.pauseVideo();
                     }
+                },
+                onError: function (event) {
+                    console.error(`${channelName} errored`, event.data);
                 }
             }
         });
     });
+    
 
     const dial = document.getElementById("channel-dial");
     const label = document.getElementById("tv-channel-label");
@@ -194,7 +204,7 @@ function toggleTvScreen(on)
 }
 
 
-// Load YouTube IFrame API
-const tag = document.createElement("script");
-tag.src = "https://www.youtube.com/iframe_api";
-document.head.appendChild(tag);
+// // Load YouTube IFrame API
+// const tag = document.createElement("script");
+// tag.src = "https://www.youtube.com/iframe_api";
+// document.head.appendChild(tag);

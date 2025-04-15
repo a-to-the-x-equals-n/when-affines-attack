@@ -49,16 +49,16 @@
 
 /* RED ECHO */
 .brutal-button::before {
-    /* top: -10px; */
     left: -16px;
+    top: 4px;
     color: var(--pixel-red);
     border: 1px solid var(--pixel-red);
 }
 
 /* BLUE ECHO */
 .brutal-button::after {
-    /* top: 10px; */
     left: 16px;
+    top: -4px;
     color: var(--pixel-blue);
     border: 1px solid var(--pixel-blue);
 }
@@ -75,7 +75,7 @@
 .brutal-button:active{
     background-color: var(--eldritch-black);
     color: var(--eldritch-orange);
-    border: 1px inset var(--eldritch-orange);
+    border: 1px solid var(--eldritch-orange);
     box-shadow: 2px 2px 0 var(--eldritch-orange);
     z-index: 0;
 }

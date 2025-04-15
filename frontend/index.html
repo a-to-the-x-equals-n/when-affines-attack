@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en">
     <head>
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
           <link rel="stylesheet" href="css/home/icons.css">
         </noscript>
       
+    
         <!-- Title (should be early for SEO) -->
         <title>Home</title>
       
@@ -66,40 +67,40 @@
     <div id = 'landing'>
         <nav class = "start-bar">
             <div class = 'start-bar-content'>
-                <button class = "start-button" id = "start-button">./start.bat</button>
+                <button class = "start-button brutal-button" id = "start-button" data-label="start">./start</button>
             </div>
         </nav>
         <div id = "start-menu" class = "start-menu hidden">
             <ul class = "start-menu-list">
                 <li class = 'start-menu-item brutal-button' data-label = 'game'>//game.sh</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'vibes'>c:\\>vibes</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'vote'>__vote__(gooses)</li>
+                <li class = 'start-menu-item brutal-button' data-label = 'vibes'>c:\>vibes</li>
+                <li class = 'start-menu-item brutal-button' data-label = 'gooses'>__vote__(gooses)</li>
                 <li class = 'start-menu-item brutal-button' data-label = 'themes'>$(THEME)</li>
             </ul>
         </div>
 
         <!-- GOOSE ICON -->
-        <button id="goose-icon" class="desktop-icon brutal-button">
+        <button id="goose-icon" class="desktop-icon brutal-button" data-label = ''>
             <img src="./assets/icons/goosegame-ico.svg" alt="Goose Game"/>
-            <span class="icon-label">//game.sh</span>
+            <span class="icon-label" data-label = 'game'>//game.sh</span>
         </button>  
 
         <!-- VIBES ICON -->
-        <button id="vibes-icon" class="desktop-icon brutal-button">
+        <button id="vibes-icon" class="desktop-icon brutal-button" data-label = ''>
             <img src="./assets/icons/tv-ico.svg" alt="TV Radio"/>
-            <span class="icon-label">c:\\>vibes</span>
+            <span class="icon-label" data-label = 'vibes'>c:\\>vibes</span>
         </button>
 
         <!-- CAROUSEL ICON -->
-        <button id="carousel-icon" class="desktop-icon brutal-button">
+        <button id="carousel-icon" class="desktop-icon brutal-button" data-label = ''>
             <img src="./assets/icons/photos-ico.svg" alt="belle lettres"/>
-            <span class="icon-label">__vote__(gooses)</span>
+            <span class="icon-label" data-label = 'gooses'>__vote__(gooses)</span>
         </button>
 
         <!-- THEME ICON -->
-        <button id="themes-icon" class="desktop-icon brutal-button">
+        <button id="themes-icon" class="desktop-icon brutal-button" data-label = ''>
             <img src="./assets/icons/themes-ico.svg" alt="repaint"/>
-            <span class="icon-label">$(THEME)</span>
+            <span class="icon-label" data-label = 'theme'>$(THEME)</span>
         </button>
 
         <!-- MAIN SCRIPTS-->
