@@ -46,7 +46,6 @@ class Goose:
         self.cursor = cursor
         heimdahl(f'[INIT CLASS] \'{self.__class__.__name__}\'', (self.vb or self.dev or larva()), threat = 1)
 
-
     @pesticide(enabled = True)
     def test_add_img(self, im: Any, /, *, desc: str | None = None) -> int | None:
         '''
@@ -200,6 +199,60 @@ class Goose:
 
         except Exception as e:
             raise HAL9000.SystemFailure(f'Could not fetch images: {e}')
+        
+    @pesticide(enabled = True)
+    def get_votes(self, image_id: str) -> dict[str, int]:
+        '''
+        Gets current vote counts for an image.
+        
+        Returns:
+        --------
+        dict[str, int]
+            {'upvotes': int, 'downvotes': int}
+        '''
+        try:
+            q = '''SELECT upvotes, downvotes FROM goose_images WHERE id = %s'''
+            self.cursor.execute(q, (image_id,))
+            result = self.cursor.fetchone()
+            return {
+                'upvotes': result['upvotes'] if result else 0,
+                'downvotes': result['downvotes'] if result else 0
+            }
+            
+        except Exception as e:
+            heimdahl(f'[VOTE QUERY FAILED] {image_id}: {e}', unveil = True, threat = 3)
+            return {'upvotes': 0, 'downvotes': 0}
+
+    @pesticide(enabled = True)
+    def register_vote(self, image_id: str, vote_type: int) -> bool:
+        '''
+        Registers a vote (up/down) for an image.
+        
+        Parameters:
+        -----------
+        image_id : str
+            UUID of the target image
+        vote_type : int
+            1 for upvote, -1 for downvote
+            
+        Returns:
+        --------
+        bool
+            True if vote was recorded successfully
+        '''
+        try:
+            column = 'upvotes' if vote_type == 1 else 'downvotes'
+            q = f'''UPDATE goose_images SET {column} = {column} + 1 WHERE id = %s'''
+            self.cursor.execute(q, (image_id,))
+            self.conn.commit()
+            
+            heimdahl(f'[VOTE] {image_id} {column}+1', unveil = larva(), threat = 1)
+            return True
+            
+        except Exception as e:
+            self.conn.rollback()
+            heimdahl(f'[VOTE FAILED] {image_id}: {e}', unveil=True, threat=3)
+            return False
 
     @staticmethod
     @pesticide(enabled = True)

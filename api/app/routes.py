@@ -31,6 +31,35 @@ def get_images():
         return jsonify({'message': 'No images found'}), 200
     return jsonify({'images': images}), 200
 
+
+@app.route('/vote', methods = ['POST'])
+def handle_vote():
+    heimdahl('[ADD VOTE ROUTE]', unveil = (settings.VB or settings.DEV), threat=2)
+    
+    try:
+        data = request.get_json()
+        if not data or 'imageId' not in data or 'vote' not in data:
+            return jsonify({'error': 'Missing required fields'}), 400
+            
+        image_id = data['imageId']
+        vote_value = 1 if str(data['vote']).lower() in ('1', 'up', 'true') else -1
+        
+        success = goose.register_vote(image_id, vote_value)
+        if not success:
+            return jsonify({'error': 'Vote registration failed'}), 500
+            
+        # return updated counts
+        counts = goose.get_votes(image_id)
+        return jsonify({
+            'message': 'Vote recorded',
+            'upvotes': counts['upvotes'],
+            'downvotes': counts['downvotes']
+        }), 200
+            
+    except Exception as e:
+        heimdahl(f'[VOTE ERROR] {e}', unveil=(settings.VB or settings.DEV), threat=3)
+        return jsonify({'error': 'Internal server error'}), 500
+    
 @app.route('/favicon.ico')
 def favicon():
     # stupid python server keeps throwing errors because I don't have a 'favicon.ico'... 
