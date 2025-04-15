@@ -39,13 +39,14 @@ export function createAppWindow(appId, appTitle, appContentHTML)
 
     // === DEFAULT SIZE: OPEN NEAR FULLSCREEN ===
     const margin = 32;
+    const startBarHeight = 50;  // Adjust if your start bar is a different height
+    
     win.style.width = `${window.innerWidth - margin * 2}px`;
-    win.style.height = `${window.innerHeight - margin * 2}px`;
+    win.style.height = `${window.innerHeight - startBarHeight - margin * 2}px`;
     win.style.left = `${margin}px`;
     win.style.top = `${margin}px`;
 
     makeDraggable(win);
-    // makeResizable(win);
     addMaximizeBehavior(win);
     addMinimizeBehavior(win, appId, appTitle);
     addCloseBehavior(win);
@@ -179,37 +180,6 @@ function makeDraggable(win)
         isDragging = false;
     });
 }
-
-// === RESIZING FUNCTIONALITY ===
-// Adds ability to resize the window from the bottom-right corner
-// function makeResizable(win) 
-// {
-//     const resizer = win.querySelector('.win95-window-resizer');
-//     let isResizing = false;
-//     let startX, startY, startWidth, startHeight;
-
-//     resizer.addEventListener('mousedown', (e) => 
-//     {
-//         isResizing = true;
-//         startX = e.clientX;
-//         startY = e.clientY;
-//         startWidth = parseInt(document.defaultView.getComputedStyle(win).width, 10);
-//         startHeight = parseInt(document.defaultView.getComputedStyle(win).height, 10);
-//         e.preventDefault(); // Prevent text selection
-//     });
-
-//     document.addEventListener('mousemove', (e) => 
-//     {
-//         if (!isResizing) return;
-//         win.style.width = `${startWidth + e.clientX - startX}px`;
-//         win.style.height = `${startHeight + e.clientY - startY}px`;
-//     });
-
-//     document.addEventListener('mouseup', () => 
-//     {
-//         isResizing = false;
-//     });
-// }
 
 
 // document.addEventListener('DOMContentLoaded', function () 

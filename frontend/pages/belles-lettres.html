@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/carousel.css">
-    <link rel = 'stylesheet' href = '../css/home/btn-base.css'>
-    <link rel = 'stylesheet' href = '../css/windows/win95.css'>
-    <link rel="stylesheet" href="../css/themes.css"> 
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/home/btn-base.css">
+    <link rel="stylesheet" href="../css/windows/win95.css">
+    <link rel="stylesheet" href="../css/vote/carousel.css">
     <title>belles-lettres</title>
 </head>
-<body>
+<body class="theme-win95">
     <div class="carousel-container">
+        <p id="imageTitle"></p>
         <div class="carousel">
-            <img id="carouselImage" alt="Carousel Image" loading="lazy">
             <button id="prevBtn" class="brutal-button" data-label="❮">❮</button>
+            <div id = 'image-container'>
+                <img id="carouselImage" alt="Carousel Image" loading="lazy">
+            </div>
             <button id="nextBtn" class="brutal-button" data-label="❯">❯</button>
         </div>
+
+        <div id="imageDescription"></div>
         
-        <div class="image-meta">
-            <h2 id="imageTitle"></h2>
-            <p id="imageDescription"></p>
-        </div>
-        
-        <div class="vote-controls">
-            <button id="thumbsUpBtn" class="brutal-button" data-label="👍">👍 <span id="thumbsUpCount">0</span></button>
-            <button id="thumbsDownBtn" class="brutal-button" data-label="👎">👎 <span id="thumbsDownCount">0</span></button>
+        <div class="voting">
+            <button id="thumbsUpBtn" class="brutal-button">👍 <span id="thumbsUpCount"></span></button>
+            <button id="thumbsDownBtn" class="brutal-button">👎 <span id="thumbsDownCount"></span></button>
         </div>
     </div>
 
