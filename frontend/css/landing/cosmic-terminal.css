@@ -13,7 +13,7 @@
 #cosmic-terminal {
     border-radius: 6px;
     display: flex;
-    flex-direction: column;       /* Stack child vertically */
+    flex-direction: column;       
     width: 90%;
     height: 87%;
     margin: 2%;
@@ -35,20 +35,20 @@
     line-height: 1.6;
     padding: 2px;
     font-family: var(--eldritch-font);
-    overflow-y: auto;       /* <— enables vertical scroll */
+    overflow-y: auto;       
     height: 100%;           
-    scrollbar-width: none;          /* Firefox */
-    -ms-overflow-style: none;       /* IE/Edge */
+    scrollbar-width: none;          
+    -ms-overflow-style: none;       
 }
 
 #cosmic-terminal-text::-webkit-scrollbar {
-    display: none;                  /* Chrome, Safari, Edge (new) */
+    display: none;                  
 }
 
 .terminal-cursor {
     display: inline-block;
     margin-left: 4px;
-    animation: blink-cursor .6s steps(2, start) infinite;
+    animation: blink-cursor .5s steps(1, start) infinite;
     font-weight: bold;
 }
 
@@ -58,18 +58,9 @@
     100% { opacity: 1; }
 }
 
-
-.glitch {
-    position: relative;
-    animation: glitch-flicker 0.3s infinite;
-}
-
-@keyframes glitch-flicker {
-    0%   { opacity: 1; transform: translate(0, 0); }
-    25%  { opacity: 0.8; transform: translate(-1px, 1px); }
-    50%  { opacity: 1; transform: translate(1px, -1px); }
-    75%  { opacity: 0.9; transform: translate(-1px, -1px); }
-    100% { opacity: 1; transform: translate(0, 0); }
+/* === STATIC FLICKER — CRT CORRUPTION BLAST === */
+.crt-flicker {
+    animation: crt-flicker 0.4s linear;
 }
 
 @keyframes crt-flicker {
@@ -81,6 +72,58 @@
     100% { opacity: 1; transform: none; }
 }
 
-.crt-flicker {
-    animation: crt-flicker 0.4s linear;
+/* === LINE-LEVEL GLITCH (TEXT DISTORTION) === */
+.glitch {
+	animation: glitch-flicker 0.15s infinite;
+}
+
+@keyframes glitch-flicker {
+	0%   { opacity: 1; transform: translate(0, 0); }
+	25%  { opacity: 0.9; transform: translate(-1px, 1px); }
+	50%  { opacity: 1; transform: translate(1px, -1px); }
+	75%  { opacity: 0.95; transform: translate(-1px, -1px); }
+	100% { opacity: 1; transform: translate(0, 0); }
+}
+
+/* === CHARACTER JITTER (D3.JS INSERTED) === */
+.glitch-d3 span {
+	animation: d3-glitch-jitter 0.3s infinite alternate;
+	display: inline-block;
+}
+
+@keyframes d3-glitch-jitter {
+	0%   { transform: translate(0, 0); }
+	25%  { transform: translate(-1px, 1px); }
+	50%  { transform: translate(1px, -1px); }
+	75%  { transform: translate(-1px, -1px); }
+	100% { transform: translate(1px, 2px); }
+}
+
+/* === CRT POWER DOWN TRANSITION === */
+@keyframes crt-powerdown {
+	0%   {
+		opacity: 1;
+		transform: scaleY(1) scaleX(1);
+		filter: brightness(1);
+	}
+	30%  {
+		opacity: 0.9;
+		transform: scaleY(0.2) scaleX(1.05);
+		filter: brightness(1.3);
+	}
+	60% {
+		opacity: 0.4;
+		transform: scaleY(0.05) scaleX(1.2);
+		filter: brightness(2);
+	}
+	100% {
+		opacity: 0;
+		transform: scaleY(0) scaleX(1.3);
+		filter: brightness(5);
+	}
+}
+
+.crt-powerdown {
+	animation: crt-powerdown 0.2s ease-in forwards;
+	transform-origin: center center;
 }

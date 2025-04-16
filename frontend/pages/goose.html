@@ -1,47 +1,52 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
-    <!-- ++ CLEANED ++ -->
-     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- ++ CLEANED ++ -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Load CSS without blocking render -->
-    <link rel="preload" href="../css/game/goose.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<!-- PRELOAD INTERNAL CSS -->
+	<link rel="preload" href="../css/game/goose.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-    <noscript>
-        <link rel="stylesheet" href="../css/game/goose.css">
-    </noscript>
+	<!-- FALLBACK FOR NO JS -->
+	<noscript>
+		<!-- INTERNAL -->
+		<link rel="stylesheet" href="../css/game/goose.css">
+	</noscript>
 
-    <title>When Affines Attack</title>
+	<!-- TITLE -->
+	<title>When Affines Attack</title>
+
+	<!-- CRITICAL JS -->
+	<script type="module" src="../js/goose_game/main.js"></script>
 </head>
 
 <body>
 
-    <div class = "display">
-        <svg id = "goose" viewBox = "0 0 100 100" width = "80" height = "80">
-        <!-- head -->
-        <rect x = "58" y = "10" width = "14" height = "10" fill = "white"/>
-        <!-- beak -->
-        <polygon points = "72,13 80,15 72,17" fill = "white"/>
-        <!-- neck -->
-        <rect x = "60" y = "20" width = "10" height = "20" fill = "white"/>
-        <!-- body -->
-        <rect x = "30" y = "40" width ="40" height = "30" fill = "white"/>
-        <!-- left foot -->
-        <rect x = "46" y = "70" width = "4" height = "10" fill = "white"/>
-        <!-- right foot -->
-        <rect x = "60" y = "70" width = "4" height = "10" fill = "white"/>
-      </svg>
-      <div id="gameOverMessage">- GAME OVER -</div>
-    </div>
+	<!-- GAME DISPLAY -->
+	<div class="display">
+		<svg id="goose" viewBox="0 0 100 100" width="80" height="80">
+			<!-- head -->
+			<rect x="58" y="10" width="14" height="10" fill="white"/>
+			<!-- beak -->
+			<polygon points="72,13 80,15 72,17" fill="white"/>
+			<!-- neck -->
+			<rect x="60" y="20" width="10" height="20" fill="white"/>
+			<!-- body -->
+			<rect x="30" y="40" width="40" height="30" fill="white"/>
+			<!-- left foot -->
+			<rect x="46" y="70" width="4" height="10" fill="white"/>
+			<!-- right foot -->
+			<rect x="60" y="70" width="4" height="10" fill="white"/>
+		</svg>
 
-    <div id = "info"></div>
-    <div id = "lives"></div>
-    
-    <script type = "module" src = "../js/goose_game/main.js"></script>
+		<!-- GAME OVER -->
+		<div id="gameOverMessage">- GAME OVER -</div>
+	</div>
+
+	<!-- GAME INFO -->
+	<div id="info"></div>
+	<div id="lives"></div>
+
 </body>
 </html>
-
-
-  

@@ -40,6 +40,16 @@ body {
     background-color: black;
     opacity: 0;
     pointer-events: none;
-    z-index: 99999; /* above everything */
-    transition: opacity .4s linear;
+    z-index: 99999;
+    transition: opacity .2s linear;
+}
+
+#sky {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	pointer-events: none;
+	z-index: 9999;
 }

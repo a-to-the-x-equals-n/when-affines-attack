@@ -14,3 +14,33 @@ body {
     overflow-x: hidden;
     overflow-y: hidden !important;
 }
+
+.upload-wrapper {
+	max-width: 600px;
+	margin: 40px auto;
+	padding: 20px;
+	text-align: center;
+	border: 2px dashed var(--main-fg);
+	background-color: var(--win95-bg);
+	font-family: var(--main-font);
+	color: var(--main-fg);
+}
+
+.upload-title {
+	margin-bottom: 20px;
+	font-size: 24px;
+}
+
+#dropZone {
+	padding: 30px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	border: 2px solid var(--main-fg);
+	background-color: var(--win95-accent);
+}
+
+.preview-area img {
+	max-width: 100%;
+	margin-top: 20px;
+	border: 1px solid #999;
+}

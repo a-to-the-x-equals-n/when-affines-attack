@@ -1,3 +1,9 @@
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+// === FLAGS ===
+window.cosmicCompleted = false;
+window.bsodCompleted = false;
+
 // === DOM ELEMENTS ===
 const cosmicTerminal = document.getElementById('cosmic-container');
 const cosmicTerminalText = document.getElementById('cosmic-terminal-text');
@@ -8,7 +14,6 @@ const blackout = document.getElementById('transition-blackout');
 let currentLineIndex = 0;
 let terminalInterval = null;
 const LINE_DELAY = 350; // <-------- ADJUST AS NEEDED TO DELAY OUTPUTS
-
 
 // === TERMINAL LINES ===
 const terminalLines = [
@@ -52,13 +57,38 @@ const glitchLines = new Set([
     'ドモ@[WARN]$: >>onlyhunger',
     'ドモ@_dark_$: 視覚層ロード完了 — unremebered>>',
     'ドモ@[ NOT ]$: no gods||waking shell manually',
-    'ドモ@[_|_]$: ⛧ sigils cast. barrier compromised.'
+    'ドモ@[_|_]$: ⛧ sigils cast. barrier compromised.',
+    'ドモ@[DREAM]$: モジュールの囁きが始まった'
 ]);
 const overwriteLines = new Set([
     'ドモ@[SYSFAIL]$: █ corrupt echoes in memory █',
     'ドモ@[ NOT ]$: no gods||waking shell manually'
 ]);
-
+const corruptLines = new Set([
+    'user@[████]:$ █.^/完/',
+    '██@[WARN]█功 /firewall_breach',
+	'ドモ@[SYSFAIL]$: █ corrupt echoes in memory █',
+	'ドモ@[VEIL]$: --unearth',
+	'ドモ@[ECHO]$: >>signal?received█from█beyond',
+	'ドモ@[_視覚-]$: 層█black█sun ████ eye',
+	'ドモ@[_ROOT_]$: 魂リンク成功 — dream-layer {locked}',
+	'ドモ@[-GATE-]$: breach destabilized::offset ∆-66',
+	'ドモ@[ OK ]$: ##oldgods-handshake-init',
+	'ドモ@[NOT]$: 視覚層ロード完了 — the hunger',
+	'ドモ@[WARN]$: >>onlyhunger',
+	'ドモ@[MSDOS]$: Goose 核心モジュール 起動中...',
+	'ドモ@[_視覚-]$: <<_binding_soul_to_shell_>>',
+	'ドモ@_dark_$: 視覚層ロード完了 — unremebered>>',
+	'ドモ@[ OK ]$: goose層█ %host sync:: 𝚫 nominal',
+	'ドモ@[$ANIMA]$: prayers accepted//form preserved',
+	'ドモ@[ NOT ]$: no gods||waking shell manually',
+	'ドモ@[BOOT]$: -TIMEDOUT- reawakening██shell',
+	'ドモ@[_|_]$: ⛧ sigils cast__barrier compromised',
+	'ドモ@[DREAM]$: モジュールの囁きが始まった',
+	'ドモ@[EYE]$: 視界フレーム完全に破られた',
+	'ドモ@[ OK ]$: __the offering is accepted__',
+	'ドモ@[HOME]$: ERR界R HANDL██ED'
+]);
 
 //  === TERMINAL SEQUENCE ===
 function runTerminal()
@@ -102,66 +132,148 @@ function runTerminal()
             cosmicTerminal.classList.remove('crt-flicker');
         }, 400); // match animation duration
     }
-
     printLine(line);
 
+    // === FINAL TRANSITION TO DESKTOP ===
     if (currentLineIndex >= terminalLines.length)
     {
         clearInterval(terminalInterval);
-
-        // apply flicker effect to the entire terminal
-        cosmicTerminal.classList.add('crt-flicker');
-        setTimeout(() =>
+    
+        // short pause to sit on final line
+        setTimeout(() => 
         {
-            // slam black screen instantly
-            blackout.style.opacity = '1';
-            cosmicTerminal.style.display = 'none';
-            cosmicTerminal.classList.remove('crt-flicker');
-
-            // fade in landing page underneath
-            setTimeout(() =>
+            // kick in CRT power-down effect
+            cosmicTerminal.classList.add('crt-powerdown');
+    
+            setTimeout(() => 
             {
-                landing.style.display = 'block';
-
-                requestAnimationFrame(() =>
+                // fade to black
+                blackout.style.opacity = '1';
+    
+                setTimeout(() => 
                 {
-                    landing.style.opacity = '0';
-                    landing.style.transition = 'opacity 1.2s ease';
-
-                    requestAnimationFrame(() =>
+                    // hide terminal + reset
+                    cosmicTerminal.style.display = 'none';
+                    cosmicTerminal.classList.remove('crt-powerdown');
+    
+                    // show landing page, then fade it in slowly
+                    landing.style.display = 'block';
+    
+                    requestAnimationFrame(() => 
                     {
-                        landing.style.opacity = '1';
-                        blackout.style.opacity = '0';
+                        landing.style.transition = 'opacity 7s ease';
+                        landing.style.opacity = '0';
+    
+                        requestAnimationFrame(() => 
+                        {
+                            landing.style.opacity = '1';
+                            blackout.style.opacity = '0';
+    
+                            // unlock goose flight AFTER fade finishes
+                            setTimeout(() => 
+                            {
+                                window.cosmicCompleted = true;
+                            }, 7000); // delay matches fade-in
+                        });
                     });
-                });
-            }, 2500); // wait a bit on black before fading in
-        }, 300); // length of flicker
+                }, 3000); // screen hangs on black before landing
+            }, 150); // CRT collapse delay
+        }, 1200); // sit on final terminal line
     }
 }
 
-//  === LINE RENDERING LOGIC ===
-function printLine(line)
+// D3-driven BIOS-style line output
+function printLine(line) 
 {
-    // remove any existing cursors before adding a new line
-    const existingCursors = document.querySelectorAll('.terminal-cursor');
-    existingCursors.forEach(cursor => cursor.remove());
+	// remove any existing cursors
+	const existingCursors = document.querySelectorAll('.terminal-cursor');
+	existingCursors.forEach(cursor => cursor.remove());
 
-    const div = document.createElement('div');
-    div.textContent = line;
+	const div = document.createElement('div');
+	div.classList.add('terminal-line');
 
-    div.innerHTML = `
-        <span>${line}</span><span class="terminal-cursor">█</span>
-    `;
+	// optional overwrite
+	if (overwriteLines.has(line)) 
+	{
+		let last = cosmicTerminalText.lastChild;
+		if (last && last.textContent.trim() === '') last = last.previousSibling;
+		if (last) cosmicTerminalText.removeChild(last);
+	}
 
-    if (glitchLines.has(line)) div.classList.add('glitch');
-    if (overwriteLines.has(line))
-    {
-        let last = cosmicTerminalText.lastChild;
-        if (last && last.textContent.trim() === '') last = last.previousSibling;
-        if (last) cosmicTerminalText.removeChild(last);
-    }
-    cosmicTerminalText.appendChild(div);
-    cosmicTerminalText.scrollTop = cosmicTerminalText.scrollHeight;
+	// create content span and cursor span separately
+	const contentSpan = document.createElement('span');
+	contentSpan.textContent = line;
+
+	const cursorSpan = document.createElement('span');
+	cursorSpan.className = 'terminal-cursor';
+	cursorSpan.textContent = '█';
+
+	// append both to the line
+	div.appendChild(contentSpan);
+	div.appendChild(cursorSpan);
+	cosmicTerminalText.appendChild(div);
+	cosmicTerminalText.scrollTop = cosmicTerminalText.scrollHeight;
+
+	// glitch class
+	if (glitchLines.has(line)) 
+	{
+		div.classList.add('glitch');
+	}
+
+	// corruption
+	if (corruptLines.has(line)) 
+	{
+		corruptLineWithD3(contentSpan);
+	}
+}
+
+
+
+function corruptLineWithD3(el) 
+{
+	const original = el.textContent;
+	let corrupted = '';
+
+	for (let i = 0; i < original.length; i++) 
+	{
+		const char = original[i];
+		const chance = Math.random();
+
+		if (chance < 0.1) 
+		{
+			// replace with symbol
+			corrupted += getRandomCorruptChar();
+		} 
+		if (chance < 0.1) 
+		{
+			// delete character
+			continue;
+		} 
+		else if (chance < 0.1) 
+		{
+			// insert extra symbol before original
+			corrupted += getRandomCorruptChar() + char;
+		} 
+		else 
+		{
+			corrupted += char;
+		}
+	}
+
+	d3.select(el)
+		.transition()
+		.duration(150)
+		.text(corrupted)
+		.transition()
+		.delay(400)
+		.duration(100)
+		.text(original);
+}
+
+function getRandomCorruptChar() 
+{
+	const chars = ['█', '⛧', '▒', '░', '𒀱', '𐑧', '⟟', 'Ξ', 'ø'];
+	return chars[Math.floor(Math.random() * chars.length)];
 }
 
 //  === SPINNER SIMULATION ===
@@ -198,4 +310,5 @@ export function transitionToCosmicTerminal()
     currentLineIndex = 0;
 
     terminalInterval = setInterval(runTerminal, LINE_DELAY);
+    window.bsodCompleted = true;
 }
