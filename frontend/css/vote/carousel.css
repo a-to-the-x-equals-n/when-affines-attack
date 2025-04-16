@@ -1,3 +1,9 @@
+html, body {
+    height: 99%;
+    margin: 0;
+    padding: 0;
+    overflow: auto !important;
+}
 
 /* === SYSTEM INHERIT === */
 body {

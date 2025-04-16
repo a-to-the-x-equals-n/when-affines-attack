@@ -15,7 +15,6 @@ class ImageCarousel
     {
         this.elements = {
             image: document.getElementById('carouselImage'),
-            title: document.getElementById('imageTitle'),
             description: document.getElementById('imageDescription'),
             prevBtn: document.getElementById('prevBtn'),
             nextBtn: document.getElementById('nextBtn'),
@@ -30,8 +29,8 @@ class ImageCarousel
     {
         this.elements.prevBtn.addEventListener('click', () => this.prevImage());
         this.elements.nextBtn.addEventListener('click', () => this.nextImage());
-        this.elements.thumbsUpBtn.addEventListener('click', () => this.vote(1));
-        this.elements.thumbsDownBtn.addEventListener('click', () => this.vote(-1));
+        this.elements.thumbsUpBtn.addEventListener('click', () => this.vote('up'));
+        this.elements.thumbsDownBtn.addEventListener('click', () => this.vote('down'));
     }
     
     async loadImages() 
@@ -60,12 +59,11 @@ class ImageCarousel
     {
         const currentImage = this.images[this.currentIndex];
         this.elements.image.src = currentImage.image;
-        // this.elements.title.textContent = currentImage.title || 'Untitled';
         this.elements.description.textContent = currentImage.description || '';
         
-        // TODO: Load vote counts from your backend
-        this.elements.thumbsUpCount.textContent = '0';
-        this.elements.thumbsDownCount.textContent = '0';
+        // Initialize vote counts
+        this.elements.thumbsUpCount.textContent = currentImage.upvotes || '0';
+        this.elements.thumbsDownCount.textContent = currentImage.downvotes || '0';
     }
     
     prevImage() 
@@ -80,7 +78,7 @@ class ImageCarousel
         this.showCurrentImage();
     }
     
-    async vote(value) 
+    async vote(voteType) 
     {
         try 
         {
@@ -95,28 +93,25 @@ class ImageCarousel
                 body: JSON.stringify(
                 {
                     imageId: currentImage.id,
-                    value: value
+                    vote: voteType  // Changed from 'value' to 'vote'
                 })
             });
             
-            if (!response.ok) throw new Error('Vote failed');
+            const result = await response.json();
             
-            // Update UI immediately (optimistic update)
-            if (value === 1) 
+            if (!response.ok) 
             {
-                const current = parseInt(this.elements.thumbsUpCount.textContent);
-                this.elements.thumbsUpCount.textContent = current + 1;
-            } 
-            else 
-            {
-                const current = parseInt(this.elements.thumbsDownCount.textContent);
-                this.elements.thumbsDownCount.textContent = current + 1;
+                throw new Error(result.error || 'Vote failed');
             }
+            
+            // Update UI with server response
+            this.elements.thumbsUpCount.textContent = result.upvotes;
+            this.elements.thumbsDownCount.textContent = result.downvotes;
         } 
         catch (error) 
         {
             console.error('Vote failed:', error);
-            alert('Vote could not be processed. Please try again.');
+            alert(`Vote error: ${error.message}`);
         }
     }
 }

@@ -1,9 +1,18 @@
+html, body {
+    height: 99%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 
 /* === WIN95 APP WINDOWS === */
 .win95-window {
+    margin: 1px;
+    margin-bottom: -1px;
     position: absolute;
     width: 500px;
     height: 400px;
+    max-height: calc(100vh - 50px - 6px);  /* 50px for bar + 32*2 margin */
     top: 80px;
     left: 100px;
 
@@ -13,6 +22,14 @@
     box-shadow: 2px 2px 0 var(--win95-dark), -1px -1px 0 var(--win95-light);
     font-family: var(--main-font);
     z-index: 2000;
+	overflow: hidden;
+
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* IE/Edge */
+}
+
+.win95-window::-webkit-scrollbar {
+    display: none;                  /* Chrome, Safari, Edge (new) */
 }
 
 .win95-window-titlebar {

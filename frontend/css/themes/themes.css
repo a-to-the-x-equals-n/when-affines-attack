@@ -4,9 +4,9 @@
 
 :root {
     /* === BSOD === */
-    --bsod-blue: #0000AA
+    --bsod-blue: #0000AA;
     --bsod-white: white;
-    --bsod-grey: #C0C0C0
+    --bsod-grey: #C0C0C0;
     --bsod-font-size: 41px;
     --bsod-letter-spacing: 0.5px;
 

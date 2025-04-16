@@ -1,0 +1,16 @@
+html, body {
+    height: 99%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background: var(--win95-bg);
+	font-family: var(--main-font);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden !important;
+}

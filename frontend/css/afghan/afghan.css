@@ -1,0 +1,61 @@
+html, body {
+    height: 99%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important;
+}
+
+body {
+    background: var(--win95-bg);
+	font-family: var(--main-font);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden !important;
+}
+
+.goose-operation {
+    padding-bottom: -1rem;
+    margin-top: 1rem;
+    border: 2px outset var(--win95-light);
+    box-shadow: 2px 2px var(--win95-dark);
+    padding: 2rem;
+    text-align: center;
+}
+
+/* -- Operation Enduring Freedom -- */
+.goose-operation h1 {
+    position: relative;
+    top: -2rem;
+    bottom: 1rem;
+    padding: 1rem;
+    display: inline-block;
+    font-size: 3rem;
+    border: 2px outset var(--win95-accent);
+    box-shadow: 2px 2px var(--win95-dark);
+    font-weight: bolder;
+}
+
+/* -- Afghanistan 2010 -- */
+.goose-operation h2 {
+    position: relative;
+    top: -4rem;
+    font-size: 3rem;
+}
+
+.goose-operation p {
+    position: relative;
+    top: -4rem;
+    font-size: 2rem;
+    color: var(--win95-fg);
+}
+
+.operation-image img {
+    position: relative;
+    top: -4rem;
+    max-width: 100%;
+    border: 2px outset var(--win95-accent);
+    box-shadow: 5px 5px var(--win95-dark);
+    margin-top: 5px;
+}

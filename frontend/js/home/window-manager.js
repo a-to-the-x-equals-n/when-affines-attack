@@ -33,7 +33,6 @@ export function createAppWindow(appId, appTitle, appContentHTML)
         <div class="win95-window-content">
             ${appContentHTML}
         </div>
-        <!-- <div class="win95-window-resizer"></div> -->
     `;
 
     // === Add to DOM ===

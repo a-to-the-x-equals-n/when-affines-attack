@@ -4,8 +4,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #0000AA;
-    color: white;
+    background-color: var(--bsod-blue);
+    color: var(--bsod-white);
     opacity: 1;                        
     transition: opacity 1s ease;   
 }
@@ -19,13 +19,13 @@
     margin: 2%;
     padding: 1%;
 
-    font-family: 'IBM Plex Mono', monospace !important;
+    font-family: var(--eldritch-font) !important;
     font-size: 22px;
     letter-spacing: 1px;
     
     z-index: 9999;
     display: flex;
-    border: 2px outset white;
+    border: 2px outset var(--bsod-white);
 }
 
 #cosmic-terminal-text {
@@ -34,7 +34,7 @@
     text-align: left;
     line-height: 1.6;
     padding: 2px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--eldritch-font);
     overflow-y: auto;       /* <— enables vertical scroll */
     height: 100%;           
     scrollbar-width: none;          /* Firefox */

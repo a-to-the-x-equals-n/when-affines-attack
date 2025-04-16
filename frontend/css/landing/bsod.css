@@ -1,11 +1,3 @@
-/* ========================
-   GLOBAL VARS
-=========================== */
-:root {
-    --bsod-font: "VT323", monospace;
-    --bsod-font-size: 41px;
-    --bsod-letter-spacing: 0.5px;
-}
 
 /* ================
    BSOD OVERLAY
@@ -16,8 +8,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #0000AA;
-    color: white;
+    background-color: var(--bsod-blue);
+    color: var(--bsod-white);
     z-index: 9999;
     padding-top: 1%;
 
@@ -27,7 +19,7 @@
     justify-content: flex-start;
     overflow: hidden;
 
-    font-family: var(--bsod-font);
+    font-family: var(--main-font);
     font-size: var(--bsod-font-size);
     letter-spacing: var(--bsod-letter-spacing);
 }
@@ -36,12 +28,12 @@
    BSOD HEADING (WINDOWS)
 =========================== */
 #bsod-heading {
-    color: #0000AA;
+    color: var(--bsod-blue);
     font-weight: bold;
     padding: 1px 10px;
     margin-top: 6%;
     display: inline-block;
-    background-color: #C0C0C0;
+    background-color: var(--bsod-grey);
 }
 
 /* ========================
@@ -57,7 +49,7 @@
     /* === FONT === */
     white-space: pre;
     line-height: 1.4;
-    font-family: var(--bsod-font);
+    font-family: var(--main-font);
     font-size: var(--bsod-font-size);
     letter-spacing: var(--bsod-letter-spacing);
 }
@@ -67,7 +59,7 @@
 =================== */
 #bsodPrompt {
     display: inline-block;
-    color: white;
+    color: var(--bsod-white);
     margin-top: .2%;
 }
 
