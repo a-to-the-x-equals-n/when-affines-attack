@@ -1,4 +1,3 @@
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 // === FLAGS ===
 window.cosmicCompleted = false;
@@ -227,8 +226,6 @@ function printLine(line)
 	}
 }
 
-
-
 function corruptLineWithD3(el) 
 {
 	const original = el.textContent;
@@ -308,7 +305,6 @@ export function transitionToCosmicTerminal()
     cosmicTerminal.style.display = 'flex';
     cosmicTerminalText.innerHTML = '';
     currentLineIndex = 0;
-
     terminalInterval = setInterval(runTerminal, LINE_DELAY);
     window.bsodCompleted = true;
 }

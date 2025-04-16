@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- PRECONNECTS -->
+	<!-- PRECONNECT -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,12 +26,11 @@
 
 	<!-- FALLBACK FOR NO JS -->
 	<noscript>
-        <!-- EXTERNAL STYLES -->
+		<!-- EXTERNAL -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        
-        <!-- INTERNAL STYLES -->
+		<!-- INTERNAL -->
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/themes/themes.css">
 		<link rel="stylesheet" href="css/themes/brutal-button-base.css">
@@ -46,101 +45,103 @@
 	<!-- CRITICAL JS -->
 	<script src="https://d3js.org/d3.v7.min.js"></script>
 	<script type="module" src="js/home/bsod.js"></script>
-	<script type="module" src="js/home/cosmic-terminal.js"></script>
 
 	<!-- NON CRITICAL JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+	<script type="module" src="js/home/cosmic-terminal.js" defer></script>
+	<script src = "js/home/d3-goose.js" defer></script>
 </head>
 
 <body class="theme-win95">
 
-    <!-- BSOD -->
-    <div id="bsod-overlay">
-        <div id="bsod-heading">Windows</div>
-        <pre id="bsod-text">
-            An error has occurred. To continue:
-            
-            Press Enter to return to Windows, or
-            
-            Press CTRL+ALT+DEL to restart your computer. If you do this,
-            you will lose any unsaved information in all open applications.
-            
-            Error: 0E : 016F : BFF9B3D4
-        </pre>
-        <span id = 'bsodPrompt'>Press any key to continue </span>
-    </div>
+	<!-- BSOD -->
+	<div id="bsod-overlay">
+		<div id="bsod-heading">Windows</div>
+		<pre id="bsod-text">
+			An error has occurred. To continue:
 
-    <!-- COSMIC TERMINAL -->
-    <div id = 'cosmic-container' style = 'display: none;'>
-        <div id="cosmic-terminal">
-            <p id="cosmic-terminal-text"></p>
-        </div>
-    </div>
-    <div id="transition-blackout"></div>
-    
-    <!-- LANDING PAGE -->
-    <div id = 'landing'>
+			Press Enter to return to Windows, or
 
-        <!-- START BAR -->
-        <nav class = "start-bar">
-            <div class = 'start-bar-content'>
-                <button class = "start-button brutal-button" id = "start-button" data-label="start">./start</button>
-                <div class="taskbar-apps"></div> 
-            </div>
-        </nav>
-        <!-- START MENU -->
-        <div id = "start-menu" class = "start-menu hidden">
-            <ul class = "start-menu-list">
-                <li class = 'start-menu-item brutal-button' data-label = 'game'>//game.sh</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'vibes'>c:\>vibes</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'gooses'>__vote__(gs)</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'themes'>$(rePAINT)</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'upload'>魂.skynet</li>
-                <li class = 'start-menu-item brutal-button' data-label = 'afghanistan'>xcr++</li>
-            </ul>
-        </div>
+			Press CTRL+ALT+DEL to restart your computer. If you do this,
+			you will lose any unsaved information in all open applications.
 
-        <!-- GOOSE ICON -->
-        <button id="goose-icon" class="desktop-icon brutal-button" data-label = ''>
-            <img src="./assets/icons/goosegame-ico.svg" alt="Goose Game"/>
-            <span class="icon-label" data-label = 'game'>//game.sh</span>
-        </button>  
+			Error: 0E : 016F : BFF9B3D4
+		</pre>
+		<span id = 'bsodPrompt'>Press any key to continue </span>
+	</div>
 
-        <!-- VIBES ICON -->
-        <button id="vibes-icon" class="desktop-icon brutal-button" data-label = ''>
-            <img src="./assets/icons/tv-ico.svg" alt="TV Radio"/>
-            <span class="icon-label" data-label = 'vibes'>c:\>vibes</span>
-        </button>
+	<!-- COSMIC TERMINAL -->
+	<div id = 'cosmic-container' style = 'display: none;'>
+		<div id="cosmic-terminal">
+			<p id="cosmic-terminal-text"></p>
+		</div>
+	</div>
+	<div id="transition-blackout"></div>
 
-        <!-- CAROUSEL ICON -->
-        <button id="carousel-icon" class="desktop-icon brutal-button" data-label = ''>
-            <img src="./assets/icons/photos-ico.svg" alt="belle lettres"/>
-            <span class="icon-label" data-label = 'gooses'>__vote__(gs)</span>
-        </button>
+	<!-- LANDING PAGE -->
+	<div id = 'landing'>
 
-        <!-- THEME ICON -->
-        <button id="themes-icon" class="desktop-icon brutal-button" data-label = ''>
-            <img src="./assets/icons/themes-ico.svg" alt="repaint"/>
-            <span class="icon-label" data-label = 'theme'>$(rePAINT)</span>
-        </button>
+		<!-- START BAR -->
+		<nav class = "start-bar">
+			<div class = 'start-bar-content'>
+				<button class = "start-button brutal-button" id = "start-button" data-label="start">./start</button>
+				<div class="taskbar-apps"></div> 
+			</div>
+		</nav>
 
-        <!-- UPLOAD ICON -->
-        <button id="upload-icon" class="desktop-icon brutal-button" data-label = ''>
-            <img src="./assets/icons/floppydisk.svg" alt="upload"/>
-            <span class="icon-label" data-label = 'upload'>魂.skynet</span>
-        </button>
+		<!-- START MENU -->
+		<div id = "start-menu" class = "start-menu hidden">
+			<ul class = "start-menu-list">
+				<li class = 'start-menu-item brutal-button' data-label = 'game'>//game.sh</li>
+				<li class = 'start-menu-item brutal-button' data-label = 'vibes'>c:\>vibes</li>
+				<li class = 'start-menu-item brutal-button' data-label = 'gooses'>__vote__(gs)</li>
+				<li class = 'start-menu-item brutal-button' data-label = 'themes'>$(rePAINT)</li>
+				<li class = 'start-menu-item brutal-button' data-label = 'upload'>魂.skynet</li>
+				<li class = 'start-menu-item brutal-button' data-label = 'afghanistan'>xcr++</li>
+			</ul>
+		</div>
 
-        <!-- AFGHAN ICON -->
-        <button id="afghanistan-icon" class="desktop-icon brutal-button" data-label = ''>
-            <img src="./assets/icons/afghanistan.svg" alt="upload"/>
-            <span class="icon-label" data-label = 'afghanistan'>xcr++</span>
-        </button>
+		<!-- GOOSE ICON -->
+		<button id="goose-icon" class="desktop-icon brutal-button" data-label = ''>
+			<img src="./assets/icons/goosegame-ico.svg" alt="Goose Game"/>
+			<span class="icon-label" data-label = 'game'>//game.sh</span>
+		</button>  
 
-        <!-- MAIN SCRIPTS-->
-        <script type = "module" src = "js/home/index.js"></script>
-    </div>
+		<!-- VIBES ICON -->
+		<button id="vibes-icon" class="desktop-icon brutal-button" data-label = ''>
+			<img src="./assets/icons/tv-ico.svg" alt="TV Radio"/>
+			<span class="icon-label" data-label = 'vibes'>c:\>vibes</span>
+		</button>
 
-    <!-- FAIRY GOOSE -->
-    <svg id="sky"></svg>
+		<!-- CAROUSEL ICON -->
+		<button id="carousel-icon" class="desktop-icon brutal-button" data-label = ''>
+			<img src="./assets/icons/photos-ico.svg" alt="belle lettres"/>
+			<span class="icon-label" data-label = 'gooses'>__vote__(gs)</span>
+		</button>
+
+		<!-- THEME ICON -->
+		<button id="themes-icon" class="desktop-icon brutal-button" data-label = ''>
+			<img src="./assets/icons/themes-ico.svg" alt="repaint"/>
+			<span class="icon-label" data-label = 'theme'>$(rePAINT)</span>
+		</button>
+
+		<!-- UPLOAD ICON -->
+		<button id="upload-icon" class="desktop-icon brutal-button" data-label = ''>
+			<img src="./assets/icons/floppydisk.svg" alt="upload"/>
+			<span class="icon-label" data-label = 'upload'>魂.skynet</span>
+		</button>
+
+		<!-- AFGHAN ICON -->
+		<button id="afghanistan-icon" class="desktop-icon brutal-button" data-label = ''>
+			<img src="./assets/icons/afghanistan.svg" alt="upload"/>
+			<span class="icon-label" data-label = 'afghanistan'>xcr++</span>
+		</button>
+
+		<!-- MAIN SCRIPT -->
+	<script type = "module" src = "js/home/index.js"></script>
+	</div>
+
+	<!-- FAIRY GOOSE -->
+	<svg id="sky"></svg>
 </body>
 </html>

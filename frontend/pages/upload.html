@@ -40,23 +40,31 @@
 
 <body class="theme-win95">
 
-	<!-- UPLOAD WRAPPER -->
-	<div class="upload-wrapper">
+    <!-- UPLOAD WRAPPER -->
+    <div class="upload-wrapper">
+		
+        <!-- UPLOAD HEADER -->
+        <h1 class="upload-title brutal-text">Insert Goose Disk</h1>
 
-		<!-- UPLOAD HEADER -->
-		<h1 class="upload-title">Insert Goose Disk</h1>
+        <!-- DROPZONE -->
+        <div id="dropZone" class="brutal-button" data-label="Drop or Click">
+            <div class="dropzone-content">
+                <p>Drop image here (PNG/JPG/WEBP)</p>
+                <p class="small-text">or click to browse</p>
+            </div>
+        </div>
 
-		<!-- DROPZONE -->
-		<div id="dropZone" class="brutal-button" data-label="Drop or Click">
-			Drop an image here or click to upload
-		</div>
+        <!-- HIDDEN FILE INPUT -->
+        <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.webp" hidden>
 
-		<!-- FILE INPUT -->
-		<input type="file" id="fileInput" accept="image/*" hidden>
+        <!-- PREVIEW AND CONTROLS -->
+        <div id="uploadControls" class="upload-controls hidden">
+            <div id="previewArea" class="preview-area"></div>
+            <button id="uploadBtn" class="brutal-button" data-label="Upload" disabled>Upload</button>
+        </div>
 
-		<!-- PREVIEW -->
-		<div id="previewArea" class="preview-area"></div>
-	</div>
-	
+        <!-- STATUS MESSAGE -->
+        <div id="statusMessage" class="status-message hidden"></div>
+    </div>
 </body>
 </html>

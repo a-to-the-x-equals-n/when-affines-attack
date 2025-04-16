@@ -1,8 +1,10 @@
+
+// === DOM REFERENCES ===
+const svg = d3.select("#sky");
+
 // wait for bsod and cosmic terminal to complete
 function startD3Flyby() 
 {
-	const svg = d3.select("#sky");
-
 	// add goose image (off-screen initially)
 	const goose = svg.append("image")
 		.attr("href", "./assets/icons/fairygoose.png")
@@ -38,9 +40,9 @@ function startD3Flyby()
 	}
 
 	randomizeFlyby();
-}
+} 
 
-// launch when cosmic and bsod both complete
+// === TRIGGER ON READY ===
 if (window.bsodCompleted && window.cosmicCompleted) 
 {
 	startD3Flyby();

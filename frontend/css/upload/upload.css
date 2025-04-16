@@ -12,35 +12,108 @@ body {
 	flex-direction: column;
 	align-items: center;
     overflow-x: hidden;
-    overflow-y: hidden !important;
+    overflow-y: auto !important;
 }
-
+/* UPLOAD STYLES */
 .upload-wrapper {
-	max-width: 600px;
-	margin: 40px auto;
-	padding: 20px;
-	text-align: center;
-	border: 2px dashed var(--main-fg);
-	background-color: var(--win95-bg);
-	font-family: var(--main-font);
-	color: var(--main-fg);
+    width: 90%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: var(--win95-surface);
+    border: 2px outset var(--win95-light);
+    box-shadow: 
+        inset 1px 1px 0px var(--win95-dark),
+        inset -1px -1px 0px var(--win95-highlight);
 }
 
 .upload-title {
-	margin-bottom: 20px;
-	font-size: 24px;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    color: var(--win95-text);
+    text-align: center;
 }
 
 #dropZone {
-	padding: 30px;
-	cursor: pointer;
-	margin-bottom: 20px;
-	border: 2px solid var(--main-fg);
-	background-color: var(--win95-accent);
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    background: var(--win95-button-face);
 }
 
-.preview-area img {
-	max-width: 100%;
-	margin-top: 20px;
-	border: 1px solid #999;
+#dropZone.active {
+    background: var(--win95-highlight);
+}
+
+.dropzone-content {
+    text-align: center;
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: var(--win95-text-secondary);
+    margin-top: 0.5rem;
+}
+
+.upload-controls {
+    margin-top: 1.5rem;
+}
+
+.preview-area {
+    margin-bottom: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.preview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--win95-button-face);
+    border: 1px solid var(--win95-dark);
+}
+
+.preview-item img {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 1rem;
+}
+
+.preview-info {
+    flex-grow: 1;
+}
+
+.preview-remove {
+    background: none;
+    border: none;
+    color: var(--win95-text);
+    cursor: pointer;
+}
+
+.status-message {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid var(--win95-dark);
+}
+
+.status-message.success {
+    background: var(--win95-highlight);
+    color: var(--win95-text);
+}
+
+.status-message.error {
+    background: var(--win95-error);
+    color: white;
+}
+
+.hidden {
+    display: none !important;
 }
