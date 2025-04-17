@@ -18,9 +18,11 @@ def upload():
             heimdahl('[UPLOAD FAILED]', unveil = (settings.VB or settings.DEV), threat = 3)
             return jsonify({'error': 'Image upload failed'}), 500
         return jsonify({'message':'Image uploaded successfully', 'id': id}), 201
+    
     except Exception as e:
         heimdahl(f'{e}', unveil = (settings.VB or settings.DEV), threat = 3)
         return jsonify({'error': 'Internal server error'}), 500
+
 
 @app.route('/images', methods = ['GET'])
 def get_images():
