@@ -6,7 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- PRECONNECT -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preconnect" href="http://localhost:8003" crossorigin>
+	<link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
+
+	<!-- PRELOAD EXTERNAL CSS -->
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- PRELOAD INTERNAL CSS -->
 	<link rel="preload" href="../css/themes/themes.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -15,6 +21,8 @@
 
 	<!-- FALLBACK FOR NO JS -->
 	<noscript>
+		<!-- EXTERNAL -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
 		<!-- INTERNAL -->
 		<link rel="stylesheet" href="../css/themes/themes.css">
 		<link rel="stylesheet" href="../css/themes/brutal-button-base.css">
@@ -25,29 +33,30 @@
 	<title>belles-lettres</title>
 
 	<!-- CRITICAL JS -->
-	<script type="module" src="../js/vote/carousel.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+	<script src="../js/vote/carousel.js" defer></script>
 </head>
 
 <body class="theme-win95">
 
 	<!-- CAROUSEL -->
 	<div class="carousel-container">
-
-		<!-- IMAGE DESCRIPTION -->
-		<div id="imageDescription"></div>
-
 		<!-- IMAGE DISPLAY -->
 		<div class="carousel">
+
 			<!-- LEFT BUTTON -->
-			<button id="prevBtn" class="brutal-button" data-label="❮">❮</button>
+			<button id="prev-button" class="brutal-button" data-label="❮">❮</button>
 			<!-- IMAGE CONTAINER -->
 			<div id="image-container">
-				<img id="carouselImage" alt="Carousel Image" loading="lazy">
+				<!-- IMAGE -->
+				<img id="carousel-image" alt="Carousel Image" loading="lazy">
+				<!-- IMAGE DESCRIPTION -->
+				<div id="image-desc"></div>
 			</div>
 			<!-- RIGHT BUTTON -->
-			<button id="nextBtn" class="brutal-button" data-label="❯">❯</button>
+			<button id="next-button" class="brutal-button" data-label="❯">❯</button>
+		
 		</div>
-
 		<!-- VOTE CONTROLS -->
 		<div class="voting">
 			<button id="thumbsUpBtn" class="brutal-button">👍 <span id="thumbsUpCount"></span></button>

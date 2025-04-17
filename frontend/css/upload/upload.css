@@ -1,119 +1,138 @@
 html, body {
-    height: 99%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-body {
-    background: var(--win95-bg);
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: var(--win95-bg);
 	font-family: var(--main-font);
+	color: var(--win95-fg);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-    overflow-x: hidden;
-    overflow-y: auto !important;
-}
-/* UPLOAD STYLES */
-.upload-wrapper {
-    width: 90%;
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: var(--win95-surface);
-    border: 2px outset var(--win95-light);
-    box-shadow: 
-        inset 1px 1px 0px var(--win95-dark),
-        inset -1px -1px 0px var(--win95-highlight);
+	justify-content: center;
 }
 
-.upload-title {
-    margin: 0 0 1.5rem 0;
-    font-size: 1.5rem;
-    color: var(--win95-text);
-    text-align: center;
+.upload-container {
+    margin-top: 2rem;
+	width: 600px;                        	    /* sets fixed container width */
+    height: 75%;
+	
+	padding: 1rem;                      	    /* adds breathing room inside container */
+	display: flex;                      	    /* enables flex layout for children */
+	flex-direction: column;            	        /* stacks children vertically */
+	align-items: center;               	        /* horizontally centers children */
+	justify-content: flex-start;           	    /* vertically centers children */
+	border: 2px outset var(--win95-light);      /* gives Win95-style 3D border */
+	background-color: var(--win95-bg);          /* matches theme background */
+	box-shadow: 2px 2px 0 var(--win95-dark);    /* creates drop-shadow for depth */
+	color: var(--win95-fg);                     /* applies themed text color */
+    position: relative;                  	    /* positioning context */
+	top: -4rem;                          	    /* move up from normal flow */
 }
 
-#dropZone {
-    width: 100%;
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
+.upload-container h1 {
+    position: relative;                  	/* positioning context */
+	top: -4rem;  
+	font-family: var(--main-font);        	/* inherits pixelated mono font */
+	font-size: 5rem;                      	/* make it punchy and readable */
+	color: var(--win95-fg);          	/* highlight color */
+}
+
+
+.upload-container #dropzone {
+	display: flex;                         	/* layout for inner elements */
+	flex-direction: column;               	/* stack label + h1 */
+	justify-content: center;              	/* center vertically */
+	align-items: center;                  	/* center horizontally */
+	cursor: pointer;                      	/* pointer cursor on hover */
+
+	width: 95%;                           	/* span container width */
+	height: 700px !important;                        	/* extended height downward */
+	position: relative;                   	/* allow vertical nudge */
+	top: -4.5rem;                         	/* pull up to desired anchor point */
+	padding: 1rem;                        	/* internal spacing */
+
+	border: 2px outset var(--win95-light);	/* retro bevel border */
+	background-color: var(--win95-bg);     	/* match Win95 theme */
+	box-shadow: 3px 3px 0 var(--win95-dark);	/* retro 3D */
+	color: var(--win95-fg) !important;     	/* themed text color */
+	text-align: center;                   	/* center any text */
+	transition: background-color 0.3s;     	/* soft transition on hover */
+}
+
+#drop-area {
+    position: relative;
+    justify-content: center;
+    align-items: top;
+    font-size: 1.4rem;
+    width: 80%;
+    height: 55%;
+    border: 2px dashed var(--win95-accent) !important;	/* retro bevel border */
+	background-color: var(--win95-bg);     	/* match Win95 theme */
+	box-shadow: 3px 3px 0 var(--win95-dark);	/* retro 3D */
+    padding: 1rem;
+    bottom: -1.7rem;
+}
+
+#browse-button {
+    position: relative;
+    bottom: -9rem;
+    right: 3.5rem;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    margin-bottom: 1.5rem;
-    background: var(--win95-button-face);
+    font-size: 1.4rem;
+    width: 6rem;
+    height: 2.2rem;
 }
 
-#dropZone.active {
-    background: var(--win95-highlight);
-}
-
-.dropzone-content {
-    text-align: center;
-}
-
-.small-text {
-    font-size: 0.8rem;
-    color: var(--win95-text-secondary);
-    margin-top: 0.5rem;
-}
-
-.upload-controls {
-    margin-top: 1.5rem;
-}
-
-.preview-area {
-    margin-bottom: 1rem;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.preview-item {
-    display: flex;
-    justify-content: space-between;
+#upload-button {
+    position: relative;
+    right: -4rem;
+    bottom: 5px;
+    justify-content: center;
     align-items: center;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    background: var(--win95-button-face);
-    border: 1px solid var(--win95-dark);
+    font-size: 1.4rem;
+    width: 6rem;
+    height: 2.2rem;
 }
 
-.preview-item img {
-    max-width: 50px;
-    max-height: 50px;
-    margin-right: 1rem;
+.description-textbox {
+    position: relative;
+    font-size: 1.2rem;
+    top: -1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 90%;
+	margin: 1rem;
 }
 
-.preview-info {
-    flex-grow: 1;
+.description-textbox label {
+	font-size: 1.1rem;
+	margin: 1rem;
 }
 
-.preview-remove {
-    background: none;
-    border: none;
-    color: var(--win95-text);
-    cursor: pointer;
+.description-textbox input[type="text"],
+.description-textbox input[type="file"] {
+	width: 100%;
+	padding: 0.3rem;
+	border: 2px inset var(--win95-dark);
+	background: var(--win95-button-face);
+	color: var(--win95-fg);
+	font-family: var(--main-font);
+	font-size: 1rem;
 }
 
-.status-message {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    text-align: center;
-    border: 1px solid var(--win95-dark);
+/* === STATUS MESSAGES === */
+#status {
+	margin-top: 1rem;
+	font-size: 1rem;
+	text-align: center;
 }
 
-.status-message.success {
-    background: var(--win95-highlight);
-    color: var(--win95-text);
+#status.success {
+	color: green;
 }
 
-.status-message.error {
-    background: var(--win95-error);
-    color: white;
-}
-
-.hidden {
-    display: none !important;
+#status.error {
+	color: red;
 }

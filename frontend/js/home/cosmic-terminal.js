@@ -30,7 +30,7 @@ const terminalLines = [
     'ドモ@[SYSFAIL]$: █ corrupt echoes in memory █',
     'ドモ@[VEIL]$: --unearth',
     'ドモ@[ECHO]$: >>signal?received█from█beyond',
-    'ドモ@[_視覚-]$: 層█black█sun ████ eye',
+    'ドモ@[_視覚-]$: 層█black█sun',
     'ドモ@[_ROOT_]$: 魂リンク成功 — dream-layer {locked}',
     'ドモ@[-GATE-]$: breach destabilized::offset ∆-66',
     '__SPINNER__',
@@ -69,7 +69,7 @@ const corruptLines = new Set([
 	'ドモ@[SYSFAIL]$: █ corrupt echoes in memory █',
 	'ドモ@[VEIL]$: --unearth',
 	'ドモ@[ECHO]$: >>signal?received█from█beyond',
-	'ドモ@[_視覚-]$: 層█black█sun ████ eye',
+	'ドモ@[_視覚-]$: 層█black█sun',
 	'ドモ@[_ROOT_]$: 魂リンク成功 — dream-layer {locked}',
 	'ドモ@[-GATE-]$: breach destabilized::offset ∆-66',
 	'ドモ@[ OK ]$: ##oldgods-handshake-init',
@@ -236,17 +236,17 @@ function corruptLineWithD3(el)
 		const char = original[i];
 		const chance = Math.random();
 
-		if (chance < 0.1) 
+		if (chance < 0.15) 
 		{
 			// replace with symbol
 			corrupted += getRandomCorruptChar();
 		} 
-		if (chance < 0.1) 
+		if (chance < 0.2) 
 		{
 			// delete character
 			continue;
 		} 
-		else if (chance < 0.1) 
+		else if (chance < 0.2) 
 		{
 			// insert extra symbol before original
 			corrupted += getRandomCorruptChar() + char;
@@ -269,7 +269,7 @@ function corruptLineWithD3(el)
 
 function getRandomCorruptChar() 
 {
-	const chars = ['█', '⛧', '▒', '░', '𒀱', '𐑧', '⟟', 'Ξ', 'ø'];
+	const chars = ['⛧', '▒', '░', '𒀱', '⟟', 'Ξ', 'ø'];
 	return chars[Math.floor(Math.random() * chars.length)];
 }
 

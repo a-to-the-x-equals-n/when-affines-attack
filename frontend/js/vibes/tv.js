@@ -6,11 +6,6 @@ let tvIsOn = false;
 const videoIds = {cyberwaste: "G1flq8LKkzk", lifestream: "nnTSSCGCGlc", starfighter: "NnXz8WcpJsg", goodjoe: "7d6rzXVlbjg", warpdrive: "zTEu81_KFGs"};
 let tvLoopPlayer = null;
 
-const tag = document.createElement("script");
-tag.src = "https://www.youtube.com/iframe_api";
-document.head.appendChild(tag);
-
-
 function onYouTubeIframeAPIReady() 
 {
     console.log("YouTube IFrame API is ready.");
@@ -151,9 +146,6 @@ function powerOn(label)
     players[currentChannel].unMute();
 }
 
-
-
-
 function powerOff(players) 
 {
     // optional: pause all players, fade screen, etc.
@@ -173,8 +165,6 @@ function powerOff(players)
     const label = document.getElementById("tv-channel-label");
     label.textContent = "";
 }
-
-
 
 function toggleTvScreen(on) 
 {
@@ -203,8 +193,10 @@ function toggleTvScreen(on)
     }
 }
 
+// Load YouTube IFrame API
+const tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
 
-// // Load YouTube IFrame API
-// const tag = document.createElement("script");
 // tag.src = "https://www.youtube.com/iframe_api";
 // document.head.appendChild(tag);

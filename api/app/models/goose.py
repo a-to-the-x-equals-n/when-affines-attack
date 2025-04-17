@@ -114,11 +114,11 @@ class Goose:
             The ID of the inserted image row, or None on failure.
         '''
         try:
-            if self.dev:
-                heimdahl(f'[DEV MODE] Redirecting to test_add_img for: {im}', unveil = (self.vb or larva()), threat = 1)
-                return self.test_add_img(im, desc = desc)
+            # if self.dev:
+            #     heimdahl(f'[DEV MODE] Redirecting to test_add_img for: {im}', unveil = (self.vb or larva()), threat = 1)
+            #     return self.test_add_img(im, desc = desc)
 
-            webp = self._to_webp(im, loss = 80)
+            webp = self._to_webp(im, loss = 85)
             title = Path(im.filename).stem
             desc = desc if desc is not None else title
             file = f'{uuid.uuid4()}.webp'

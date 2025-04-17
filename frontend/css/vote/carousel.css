@@ -5,37 +5,23 @@ html, body {
     overflow: auto !important;
 }
 
-/* === SYSTEM INHERIT === */
 body {
     background: var(--win95-bg);
 	font-family: var(--main-font);
-	padding-bottom: 1.2% !important;
-	display: flex;
-	flex-direction: column;
+	/* padding-bottom: 1.2% !important; */
 	align-items: center;
+	overflow-x: hidden !important;
 }
 
 /* === CAROUSEL WRAPPER === */
 .carousel-container {
+	margin-top: 2.5rem;
     color: var(--win95-fg);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
 	padding: 1rem;
-}
-
-#imageDescription {
-    color: var(--win95-fg);
-    max-width: unset; /* allow overflow */
-    font-size: 4rem;
-    width: 100%;
-	text-align: center;
-	font-family: var(--main-font);
-    overflow: visible;
-    word-wrap: break-word;
-	overflow-wrap: break-word;
-	white-space: normal;
 }
 
 /* === IMAGE CAROUSEL === */
@@ -62,35 +48,43 @@ body {
 }
 
 #image-container {
-    color: var(--win95-fg);
+	color: var(--win95-fg);
 	width: 900px;
-	height: 700px;
+	height: auto;
 	min-width: 900px;
-	min-height: 700px;
 	max-width: 900px;
-	max-height: 700px;
-
 	display: flex;
+	flex-direction: column; /* ✅ stack vertically */
 	align-items: center;
 	justify-content: center;
 	border-radius: 4px;
+	border: 2px outset var(--win95-light);
+	box-shadow: 2px 2px 0 var(--win95-dark);
+	background-color: var(--win95-bg);
 	overflow: hidden;
-	flex-shrink: 0;
-	flex-grow: 0;
-    border: 2px outset var(--win95-light);      /* light outer border */
-	box-shadow: 2px 2px 0 var(--win95-dark);    /* 3D shadow */
-	background-color: var(--win95-bg);          /* window background */
-    overflow: hidden;
+	padding: 1rem 0; /* optional vertical padding */
 }
 
-#carouselImage {
-    color: var(--win95-fg);
+#carousel-image {
 	width: 97%;
-	height: 97%;
+	height: auto;
+	max-height: 600px;
 	object-fit: contain;
 	pointer-events: none;
-	user-select: none;           
+	user-select: none;
+	margin-bottom: 1rem; /* spacing between image and text */
 }
+
+#image-desc {
+	margin: 1rem;
+	font-size: 2.5rem;
+	text-align: center;
+	padding: 0 1rem;
+	word-wrap: break-word;
+	white-space: normal;
+	width: 100%;
+}
+
 
 /* === VOTE CONTROLS === */
 .voting {

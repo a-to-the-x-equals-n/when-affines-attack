@@ -40,6 +40,7 @@
    BSOD TEXT AREA
 =========================== */
 #bsod-text {
+    position: relative;
     text-align: left;
 
     overflow-x: auto;
@@ -52,6 +53,7 @@
     font-family: var(--main-font);
     font-size: var(--bsod-font-size);
     letter-spacing: var(--bsod-letter-spacing);
+    right: 10rem;
 }
 
 /* ================

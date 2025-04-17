@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); /* font-family: "VT323", monospace; */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap'); /* font-family: 'IBM Plex Mono', monospace; */
+/* @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');  */
+/* font-family: "VT323", monospace; */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');  */
+/* font-family: 'IBM Plex Mono', monospace; */
 
 
 :root {
@@ -36,7 +38,7 @@
     --win95-highlight: #dfdfdf;
 
     --main-font: "VT323", monospace;
-    --theme-bg-image: url('../../assets/windows_bg.png');
+    --theme-bg-image: url('../../assets/backgrounds/windows_bg.png');
 
     --theme-bg-color: #000000;
     --startbar-bg: black;
@@ -54,7 +56,7 @@
     --win95-highlight: #13ad7a;
   
     --main-font: "VT323", monospace;
-    --theme-bg-image: url('../../assets/vgod.png');
+    --theme-bg-image: url('../../assets/backgrounds/vgod.png');
 
     --theme-bg-color: #201c1c;
     --startbar-bg: #1a0e1a;

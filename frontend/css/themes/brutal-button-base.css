@@ -10,7 +10,7 @@
 
     /* COLORS */
     background-color: var(--win95-bg);
-    border: 1px solid var(--win95-light);
+    border: 2px outset var(--win95-light);  
     box-shadow: 2px 2px 0 var(--win95-dark);
 
     /* FONT */

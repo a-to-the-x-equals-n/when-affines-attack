@@ -8,11 +8,11 @@
 	<!-- PRECONNECT -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+	<link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
+	<link rel="preconnect" href="http://localhost:8003" crossorigin>
 
 	<!-- PRELOAD EXTERNAL CSS -->
-	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- PRELOAD INTERNAL CSS -->
 	<link rel="preload" href="../css/themes/themes.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -22,9 +22,7 @@
 	<!-- FALLBACK FOR NON JS -->
 	<noscript>
 		<!-- EXTERNAL -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
 		<!-- INTERNAL -->
 		<link rel="stylesheet" href="../css/themes/themes.css">
 		<link rel="stylesheet" href="../css/themes/brutal-button-base.css">
@@ -35,36 +33,91 @@
 	<title>Upload Goose</title>
 
 	<!-- CRITICAL JS -->
-	<script type="module" src="../js/upload/upload.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body class="theme-win95">
 
-    <!-- UPLOAD WRAPPER -->
-    <div class="upload-wrapper">
-		
-        <!-- UPLOAD HEADER -->
-        <h1 class="upload-title brutal-text">Insert Goose Disk</h1>
+	<!-- UPLOAD WRAPPER -->
+	<div class="upload-container">
 
-        <!-- DROPZONE -->
-        <div id="dropZone" class="brutal-button" data-label="Drop or Click">
-            <div class="dropzone-content">
-                <p>Drop image here (PNG/JPG/WEBP)</p>
-                <p class="small-text">or click to browse</p>
-            </div>
-        </div>
+		<!-- UPLOAD HEADER -->
+		<h1>More Goose</h1>
 
-        <!-- HIDDEN FILE INPUT -->
-        <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.webp" hidden>
+		<!-- DROP ZONE -->
+		<form id="dropzone" enctype="multipart/form-data">
+			<div class="drop-area brutal-button" id="drop-area" data-label="[dropzone]">
+				[dropzone]
+				<input type="file" name="image" id="image" accept=".png,.jpg,.jpeg,.webp" hidden>
+			</div>
 
-        <!-- PREVIEW AND CONTROLS -->
-        <div id="uploadControls" class="upload-controls hidden">
-            <div id="previewArea" class="preview-area"></div>
-            <button id="uploadBtn" class="brutal-button" data-label="Upload" disabled>Upload</button>
-        </div>
+			<label for="image" class="brutal-button" id="browse-button"data-label="browse">browse</label>
 
-        <!-- STATUS MESSAGE -->
-        <div id="statusMessage" class="status-message hidden"></div>
-    </div>
+			<!-- DESCRIPTION FIELD -->
+			<div class="description-textbox">
+				<label for="description">describe:</label>
+				<input type="text" name="description" id="description" placeholder="yield thine ballads of galactic conquest...">
+			</div>
+
+			<!-- SUBMIT BUTTON -->
+			<button type="submit" class="brutal-button submit-image" id="upload-button" data-label="upload">upload</button>
+		</form>
+
+		<!-- STATUS -->
+		<div id="status"></div>
+	</div>
+
+	<!-- JQUERY AJAX HANDLER -->
+	<script>
+		$(document).ready(function () 
+		{
+			$('#dropzone').on('submit', function (e) 
+			{
+				e.preventDefault();
+				const data = new FormData(this);
+
+				$.ajax({
+					url: 'http://localhost:8003/upload',
+					type: 'POST',
+					data: data,
+					processData: false,
+					contentType: false,
+					success: function (res) 
+					{
+						$('#status').text('Upload successful!').removeClass('error').addClass('success');
+						console.log(res);
+					},
+					error: function (err) 
+					{
+						$('#status').text('Upload failed.').removeClass('success').addClass('error');
+						console.error(err);
+					}
+				});
+			});
+		});
+		// === IMAGE PREVIEW ON FILE DROP ===
+		$('#image').on('change', function () 
+		{
+			const file = this.files[0];
+
+			if (file && file.type.startsWith('image/')) 
+			{
+				const reader = new FileReader();
+
+				reader.onload = function (e) 
+				{
+					// remove previous preview if any
+					$('#drop-area').css({
+						'background-image': `url(${e.target.result})`,
+						'background-size': 'contain',
+						'background-repeat': 'no-repeat',
+						'background-position': 'center'
+					});
+				};
+
+				reader.readAsDataURL(file);
+			}
+		});
+	</script>
 </body>
 </html>
