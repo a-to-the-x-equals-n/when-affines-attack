@@ -1,55 +1,142 @@
-## <span style="color: #00BE67;">Intro</span>
+## <span style="color: #00BE67;">GooseOS: A Win95-Style Goose Playground</span>
 
-A quirky game where you play as a goose and try to avoid affine matrix transformations for as long as you can.
+An immersive retro-style web application inspired by Windows 95, featuring:
 
-The main inspiration was to try and find a means--within my skillset--to try and develop a minigame that my kids could perhaps find interesting. 
+- A goose-themed educational minigame on affine matrix transformations
+- An image upload interface with drag-and-drop support and preview
+- A voting carousel for uploaded goose art
+- A fully styled brutalist desktop UI powered by jQuery, D3.js, Flask, and pixel aesthetics
+- Interactive boot sequence with a simulated BSOD and cosmic terminal corruption
 
-In doing so, hopefully they accidentally learn a thing or two about affine transformation matrices, against their will.
+The original goal was to make a game my kids could enjoy (and maybe trick them into learning matrix math), but it’s grown into a full desktop environment with dynamic modules and components — all styled like a late-'90s operating system.
+
+---
+
+### <span style="color: #00BE67;">Project Structure</span>
+
+```
+.
+├── Makefile
+├── api                      # Flask backend
+│   ├── app
+│   │   ├── models           # Image model, vote state
+│   │   ├── util             # Heimdahl debugger, color output
+│   │   └── routes.py        # Image upload, image list, vote API
+│   └── run.py
+├── frontend
+│   ├── assets               # Goose icons, TV overlays, user-submitted images
+│   ├── css                 # All modular and themed CSS
+│   ├── js                  # All functional modules (BSOD, terminal, goose logic, etc.)
+│   └── pages               # All HTML pages
+```
 
 ---
 
 ### <span style="color: #00BE67;">Quick Setup</span>
 
-There's a __Makefile__ included for your convenience.
-
-1. __Clone__ the repository.
-2. Nagivate to the __root folder__ of the __cloned repository__.
-3. Execute the following in __terminal__:
+There is a `Makefile` for convenience. To launch the frontend:
 
 ```bash
 make client
 ```
->__NOTE__: _The default __port__ in the Makefile is __8002__._
 
-The __Makefile__ is configured for a __bash__ shell, so if you run into any issues, you can simply run the following in your terminal:
-
-```bash
-python -m http.server 8002
-```
-
-*__OR...__*
+This runs:
 
 ```bash
 python3 -m http.server 8002
 ```
 
-### <span style="color: #00BE67;">Game Instructions</span>
+You can also run it manually from the `frontend/` folder.
 
-Use your directional arrow keys to move your __goose__. Alternatively, `WASD` or `wasd` will also register character movement.
+> NOTE: The frontend and backend are run separately. Flask handles the API. The frontend is served statically.
 
-__Affine transformations__ (3x3 matrices) are randomly generated at intervals of approximately 5 seconds.
+To run the Flask API:
 
-You have __3 lives__.
+```bash
+make dev-host
+```
 
-It is your goal to __avoid colliding with any__ of the matrices.
+This runs:
+```bash
+cd api && python run.py -D -V
+```
 
-For __every collision__, you will __lose one life.__
+>Note: the `d` and `v` flags are for "developement" and "verbose"; the program is riddled with print statements to track the program flow for debugging.
 
-__BUT!__ when you do collide, your __goose__ will undergo that _exact_ transformation. Not only visually, but also the goose's direction vector is adjust according to the matrix as well; __north__ may become __southwest__, etc.
+Make sure you have `Flask` and any additional `requirements.txt` dependencies installed.
 
+---
+
+### <span style="color: #00BE67;">Goose Game (goose.html)</span>
+
+- Controls: `Arrow keys`, `WASD`, or `wasd`
+- Objective: Avoid affine matrices (which appear every ~5 seconds)
+- You have `3 lives`
+- Each time you collide with a matrix, the goose undergoes a transformation:
+  - Visually transformed
+  - Movement direction adjusted
+- The entire scene runs on `D3.js` and a DOM-based game loop
+
+---
+
+### <span style="color: #00BE67;">Upload Page (upload.html)</span>
+
+A styled drag-and-drop form:
+
+- Fully supports `drag-and-drop` or `manual browse`
+- Image preview displays the dragged image inside the upload zone
+- Submits to Flask API `/upload` endpoint via `jQuery AJAX`
+- Optional description field
+- Returns a status message with success/failure
+- Respects the pixelated Win95 design (brutal-button styling, shadow, outlines)
+
+---
+
+### <span style="color: #00BE67;">Voting Carousel (belles-lettres.html)</span>
+
+- Carousel for viewing uploaded images
+- Includes `Thumbs Up` / `Thumbs Down` buttons
+- Live vote counts updated after each interaction
+- Carousel navigation with ❮ and ❯
+- All images pulled from Flask backend via `/images`
+- jQuery-based logic with minimal overhead
+
+---
+
+### <span style="color: #00BE67;">Cosmic Boot Sequence</span>
+
+Before accessing the desktop, users are presented with:
+
+- A `blue screen of death` (bsod.js)
+- Followed by a `cosmic-terminal` glitch animation where characters fragment and warp
+- Finally, a `goose` flies by — randomly selected from uploaded images (fairygoosemother.js)
+
+These are organized as timed sequences, waiting for global flags `window.bsodCompleted` and `window.cosmicCompleted`.
+
+---
+
+### <span style="color: #00BE67;">Pages</span>
+
+- `index.html`: the Win95 desktop hub
+- `upload.html`: image drag-and-drop upload
+- `belles-lettres.html`: voting carousel
+- `goose.html`: matrix-avoidance game
+- `vibes.html`: a TV-style aesthetic view
+- `afghan.html`: includes user-defined imagery from deployment (easter egg)
+
+---
 
 ### <span style="color: #00BE67;">Requirements</span>
 
-Just an internet browser and a __Python__ version 3.0+ for __Python's__ `http.server` module.
+- Python 3.0+ (for backend)
+- Browser: Works best on Firefox or Chromium
+- jQuery, D3.js, Bootstrap, and retro-style CSS via CDN
+- No build tools required
 
-Locally, I'm running __Firefox__ and __Python v3.10__ for the `http.server`.
+---
+
+### <span style="color: #00BE67;">Motivation</span>
+
+This project was designed with kids in mind — something engaging, funny, and oddly educational. And like any chaotic goose, it grew into an operating system unto itself.
+
+> "Yield thine ballads of galactic conquest."
