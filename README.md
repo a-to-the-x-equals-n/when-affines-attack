@@ -1,4 +1,6 @@
 ## <span style="color: #00BE67;">GooseOS: A Win95-Style Goose Playground</span>
+author: Logan Reine
+email: reinel22@students.ecu.edu
 
 An immersive retro-style web application inspired by Windows 95, featuring:
 

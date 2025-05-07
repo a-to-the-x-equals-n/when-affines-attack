@@ -4,7 +4,7 @@ from .colrs import RD, BU, YW
 import functools
 
 # thread-local storage to track nested debug states
-BUGS = _debug_stack = threading.local()
+RIME = _debug_stack = threading.local()
 F = TypeVar('F', bound = Callable)  # generic function type
 
 class pesticide:
@@ -46,7 +46,7 @@ class pesticide:
     @staticmethod
     def larva() -> bool:
         '''Returns True if the current function is in debug mode.'''
-        return hasattr(BUGS, 'nest') and BUGS.nest and BUGS.nest[-1]
+        return hasattr(RIME, 'nest') and RIME.nest and RIME.nest[-1]
     
 larva = pesticide.larva
 __all__ = ['pesticide', 'larva']
